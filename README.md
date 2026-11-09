@@ -1,13 +1,13 @@
 # Treasure Path Games
 
-Student assessment games, one page per learning period (LP 1 to 10).
+Student assessment games for all 10 learning periods, on one site. The first screen is the learning period picker with grade and checks.
 
 ## Folders
-- `docs/` is the live site. GitHub Pages serves this folder. `index.html` is the page with links to each LP.
+- `docs/` is the live site. GitHub Pages serves this folder. `index.html` is the game. `docs/data/` has one file per grade per LP (like `lp2-g2.js`), loaded when you start that LP and grade.
 - `source/gx/` has the game code (`apply.py` builds everything, `g1.js` to `g8.js` hold the stops for each grade).
 - `source/gem/` has every picture the games use, saved as text files (`.b64`) so they can be rebuilt.
 - `source/work/patched_base.html` is the base game file the build starts from.
-- `source/split/build.py` cuts the finished game into the 10 LP pages and writes them to `docs/`.
+- `source/split/build.py` splits the finished game into `docs/index.html` and the files in `docs/data/`.
 
 ## Rebuild after a change
 From the `source` folder:
@@ -28,5 +28,5 @@ Then commit and push. The site updates in a minute or two.
 4. Rebuild, commit, push.
 
 ## Notes
-- Each LP page is one self-contained file, 10 to 16 MB. They load fine but take a few seconds on a slow connection.
+- The first load is about 14 MB. After you pick an LP and grade, one more file of 1 to 2 MB loads.
 - GitHub Pages sites are public. Do not type real student names into the games.
