@@ -69,6 +69,7 @@ A({std:"W.1.8",make:function(lp){var r=V(RE,lp),q=V(RE,lp+2);var PL=function(){r
 var IW=[["sun","map","fish"],["bed","cup","ship"],["van","jam","goat"],["zip","dog","hen"],["log","pig","web"]];
 var IS={sun:"/s/",map:"/m/",fish:"/f/",bed:"/b/",cup:"/k/",ship:"/sh/",van:"/v/",jam:"/j/",goat:"/g/",zip:"/z/",dog:"/d/",hen:"/h/",log:"/l/",pig:"/p/",web:"/w/"};
 A({std:"RF.1.2",lps:[3,5,6,7,8,9,10],make:function(lp){var w=V(IW,lp);return P({std:"RF.1.2",title:"First Sound",n:3,dur:75,dir:"Listen to the word. Say just the first sound.",desc:"isolating and pronouncing the initial sound in spoken single-syllable words",
+ qsup:w.map(function(x){return function(){var k=window.TP_IMG1&&window.TP_IMG1.wp&&window.TP_IMG1.wp[x];return k?'<div class="figure" style="margin:6px 0"><img alt="'+x+'" style="height:150px;width:auto" src="data:image/webp;base64,'+k+'"></div>':""}}),
  rows:w.map(function(x){return["What is the first sound in "+x+"?","The sound "+IS[x]+". Say the sound, not the letter name."]})})}});
 var MW=[["cat","pig","bug"],["hen","dog","sit"],["map","bed","cup"],["pin","hot","ten"],["rub","fan","lid"]];
 var MS={cat:"/a/",pig:"/i/",bug:"/u/",hen:"/e/",dog:"/o/",sit:"/i/",map:"/a/",bed:"/e/",cup:"/u/",pin:"/i/",hot:"/o/",ten:"/e/",rub:"/u/",fan:"/a/",lid:"/i/"};
