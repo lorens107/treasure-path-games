@@ -224,6 +224,10 @@ _a='Listen.</p>`,key:["Ask: What does a young sunflower'
 assert _m6.count(_a)==1
 _m6=_m6.replace(_a,'Listen.</p>`,picSup:true,fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="Six sunflower pictures with short labels: sunflowers are tall with big yellow flowers, a young sunflower turns to face the sun, each flower is full of seeds, birds and people eat the seeds, farmers plant seeds in spring, and flowers bloom in late summer and fall" src="data:image/webp;base64,${window.TP_IMG1.wp.sunfacts}" style="width:760px;max-width:100%;height:auto;border-radius:16px"></div>`,key:["Ask: What does a young sunflower')
 s=s[:_i6]+_m6+s[_j6:]
+_i7=s.index('TP.register({id:"lp3-g1"');_j7=s.index('TP.register({id:',_i7+10);_m7x=s[_i7:_j7]
+_a='${pics([["leaf","leaf"],["wind","the air"],[CORN,"the harvest"]])}'
+assert _m7x.count(_a)==1
+s=s[:_i7]+_m7x.replace(_a,'')+s[_j7:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
