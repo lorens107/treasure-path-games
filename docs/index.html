@@ -3099,7 +3099,7 @@ window.TKX=function(E,lp){
   return sv(b,px,"A map with a house, a pond, a tree, a school and a road","0 0 300 220")};
  /* stop builders */
  var P=function(o){o.pickOnly=true;o.dur=o.dur||100;return o};
- var S=function(id,title,short,part){return {id:id,pickOnly:true,title:tag+" "+title,short:short,parts:[P(part)]}};
+ var S=function(id,title,short,part){var sci=id>=110&&id<=129;var q=P(part);if(sci)q.pickOnly=false;return {id:id,pickOnly:!sci,title:tag+" "+title,short:short,parts:[q]}};
  var out=[];
  /* ---------- ELA ---------- */
  out.push(S(101,"Group Words","Groups",{title:"Name the Group",std:["TK.ELA.LS.1.2"],n:4,dur:110,
