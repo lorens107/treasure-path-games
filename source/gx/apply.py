@@ -320,5 +320,38 @@ def recomp(m):
 n0=len(s);s=_re.sub(r'data:image/webp;base64,([A-Za-z0-9+/=]+)',recomp,s)
 json.dump(cache,open(CP,'w'))
 print('image recompress saved chars',n0-len(s))
+
+# make baked-in black corners and backgrounds transparent
+import numpy as _np
+from scipy import ndimage as _ndi
+_fixc={}
+def _unblack(m):
+    b=m.group(0)
+    if b in _fixc: return _fixc[b]
+    out=b
+    try:
+        raw=base64.b64decode(b);im=Image.open(io.BytesIO(raw));fmt=im.format;im.load()
+        a=_np.array(im.convert('RGBA')).astype(int)
+        if (a[:,:,3]>250).mean()>0.97 and im.size[0]>=300:
+            mx=a[:,:,:3].max(axis=2)
+            cs=[mx[0,0],mx[0,-1],mx[-1,0],mx[-1,-1]]
+            if max(cs)<=12:
+                lab,n=_ndi.label(mx<60)
+                ids=set(lab[0,:])|set(lab[-1,:])|set(lab[:,0])|set(lab[:,-1]);ids.discard(0)
+                bg=_np.isin(lab,list(ids))
+                if 0.002<bg.mean()<0.45:
+                    sub=_ndi.binary_fill_holes(~bg)
+                    sub=_ndi.binary_opening(sub,iterations=1)
+                    al=Image.fromarray((sub*255).astype(_np.uint8)).filter(ImageFilter.GaussianBlur(0.7))
+                    o=im.convert('RGBA');o.putalpha(al);bio=io.BytesIO()
+                    if fmt=='PNG': o.save(bio,'PNG',optimize=True)
+                    else: o.save(bio,'WEBP',quality=88,method=6)
+                    out=base64.b64encode(bio.getvalue()).decode()
+                    print('unblacked',fmt,im.size,round(bg.mean(),3))
+    except Exception as e: pass
+    _fixc[b]=out
+    return out
+from PIL import ImageFilter
+s=_re.sub(r'[A-Za-z0-9+/]{3000,}={0,2}',_unblack,s)
 open(B+'work/patched.html','w').write(s)
 print('patched',len(s),'gx bytes',len(js))
