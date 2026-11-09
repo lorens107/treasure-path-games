@@ -361,6 +361,19 @@ must('m.innerHTML=\'<div class="stop-head"><h2>\'+esc(stopName(current))+"</h2><
 must('.student-screen{padding:12px 16px;background:var(--bg)}','.student-screen{padding:12px 16px;background:var(--bg)}.student-screen [data-teacher-only]{display:none!important}.teacher-read{background:#e8f1fb;border:2px solid #7aa7d9;border-radius:14px;padding:10px 16px;margin:10px 0;font-size:1.05rem;line-height:1.5}.teacher-read p{margin:6px 0 0}')
 must('if(p.read)h+=`<p><b>Read aloud to the student:</b> ${p.read}</p>`;if(p.inventory&&p.words)','if(p.read&&!live)h+=`<p><b>Read aloud to the student:</b> ${p.read}</p>`;if(p.inventory&&p.words)')
 must('if(p.kind==="words"&&p.words)h+=`<div id="wordBox"','if(!p.read&&!(p.qs&&p.qs.length)&&p.key&&p.key.length&&p.kind!=="words"&&p.kind!=="read"&&p.kind!=="fable"&&!(p.words&&p.words.length)&&/listen while|listen to your teacher|your teacher will read|listen as your teacher|listen carefully|listen, then|listen and/.test(String(p.dir||"").toLowerCase()))h+=`<div class="teacher-read" data-teacher-only="1"><b>What you say. Only you see this box.</b><ol style="margin:6px 0 0 20px;padding:0">${p.key.map(k=>`<li>${k}</li>`).join("")}</ol></div>`;if(p.kind==="words"&&p.words)h+=`<div id="wordBox"')
+import re as _re
+def _mix(m):
+    ws=[w.strip() for w in m.group(2).split(' / ')]
+    return m.group(1)+'<span class=mixrow>'+''.join('<b class=mixw>'+w+'</b>' for w in ws)+'</span>'
+_n0=len(_re.findall(r'(to make a sentence: )<b>([^<>]*? / [^<>]*?)</b>',s))
+s=_re.sub(r'(to make a sentence: )<b>([^<>]*? / [^<>]*?)</b>',_mix,s)
+print('mixup rows',_n0)
+_i21=s.index('TP.register({id:"lp3-g2"');_j21=s.index('TP.register({id:',_i21+10);_m21=s[_i21:_j21]
+_a='Write 3 sentences. Say which one you think is better, give one reason, and end it.</p>`,key:["Opens by naming what the writing is about'
+assert _m21.count(_a)==1
+_m21=_m21.replace(_a,'Write 3 sentences. Say which one you think is better, give one reason, and end it.</p><div class="passage sm" style="margin-top:14px"><b>Facts you can use</b><ul style="margin:6px 0 0"><li>A small pumpkin costs 2 dollars.</li><li>A big pumpkin costs 5 dollars.</li><li>A small pumpkin is easy to carry.</li><li>A big pumpkin is heavy, but it has lots of room to carve.</li></ul></div>`,key:["Opens by naming what the writing is about')
+s=s[:_i21]+_m21+s[_j21:]
+must('.student-screen [data-teacher-only]{display:none!important}','.student-screen [data-teacher-only]{display:none!important}.mixrow{display:block;white-space:nowrap;margin-top:8px}.mixw{display:inline-block;border:2px solid #b98a5e;background:#fff7ea;border-radius:10px;padding:2px 10px;margin-right:8px}')
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
