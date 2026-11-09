@@ -1,0 +1,10 @@
+const { chromium } = require('/opt/npm-tools/node_modules/playwright');
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+const p=await b.newPage({viewport:{width:1000,height:900}});const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto('file://'+process.env.FILE,{waitUntil:'load',timeout:120000});await p.waitForTimeout(1500);
+const r=await p.evaluate(async()=>{await TP._debug.start({lp:1,grade:'1',subj:'math',check:'essential',lvOff:true});
+const R=TP._debug.ROUTE;const out=[];
+TP._debug.openStop(R[0].id);out.push('first has prev: '+!!document.getElementById('prevBtn'));
+TP._debug.openStop(R[2].id);const pb=document.getElementById('prevBtn');out.push('third: '+(pb&&pb.textContent));
+pb.click();await new Promise(r=>setTimeout(r,300));out.push('after click view: '+document.querySelector('#stopView h2,#stopView .stop-head h2')?.textContent+' | '+R[1].title);return out});
+console.log(r,errs);await p.screenshot({path:process.env.OUT});await b.close()})();
