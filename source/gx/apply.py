@@ -205,6 +205,20 @@ for _a,_b in [('dir:"Look at the chart. Write 1 sentence on your paper and hold 
     assert _a in _m3,_a
     _m3=_m3.replace(_a,_b)
 s=s[:_i3]+_m3+s[_j3:]
+_a='${story("Pumpkins",PUMP)}`,qs:["What kind of skin does a pumpkin have?"'
+assert s_ if False else True
+_i4=s.index('TP.register({id:"lp3-g1"');_j4=s.index('TP.register({id:',_i4+10);_m4=s[_i4:_j4]
+_a='${story("Pumpkins",PUMP)}`,qs:['
+assert _m4.count(_a)==1
+_m4=_m4.replace(_a,'${story("Pumpkins",PUMP)}`,picSup:true,fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="A smiling pumpkin on a vine with labels: it grows on a long stem, it has thick skin, sun and wet mud help it get big, it can get as big as a dog, and a cut pumpkin has wet pulp and seeds inside" src="data:image/webp;base64,${window.TP_IMG1.wp.pumpfacts}" style="width:760px;max-width:100%;height:auto;border-radius:16px"></div>`,qs:[')
+s=s[:_i4]+_m4+s[_j4:]
+must('function hay(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})">','function hay(x,y,s){s=s||1;const HI=window.TP_IMG1&&window.TP_IMG1.wp&&window.TP_IMG1.wp.hayS;if(HI)return`<image href="data:image/webp;base64,${HI}" x="${x-32*s}" y="${y-30*s}" width="${64*s}" height="${60*s}"/>`;return hayOld(x,y,s)}function hayOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})">')
+must('function wagon(n,full){if(full)return','function wagon(n,full){if(!full&&window.TP_IMG1&&window.TP_IMG1.wp&&window.TP_IMG1.wp.wagonEmpty)return`<image href="data:image/webp;base64,${window.TP_IMG1.wp.wagonEmpty}" x="6" y="-4" width="252" height="134" preserveAspectRatio="xMidYMid meet"/>`;if(full)return')
+_i5=s.index('TP.register({id:"lp3-g1"');_j5=s.index('TP.register({id:',_i5+10);_m5=s[_i5:_j5]
+_a='${TWO}`,key:["Names the topic: fall (W.1.2)"'
+assert _m5.count(_a)==1
+_m5=_m5.replace(_a,'${TWO}`,picSup:true,fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="Four fall pictures: a tree with falling red and orange leaves, a cold frosty field with a thermometer and snowflake sign, a basket of red apples under an apple tree, and a big pumpkin and a little pumpkin on the vine" src="data:image/webp;base64,${window.TP_IMG1.wp.fallfacts}" style="width:640px;max-width:100%;height:auto;border-radius:16px"></div>`,key:["Names the topic: fall (W.1.2)"')
+s=s[:_i5]+_m5+s[_j5:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
