@@ -397,5 +397,7 @@ def _usfix2(m):
 _n2=len(_re.findall(_pat2,s,_re.I))
 s=_re.sub(_pat2,_usfix2,s,flags=_re.I)
 print('american spellings 2',_n2)
+_np=s.count('\u00a3'); s=s.replace('\u00a3','$'); s=s.replace('&pound;','$'); print('pound signs to dollars',_np)
+s=s.replace('The eight draws, in pounds','The eight draws, in dollars').replace('costs k pounds','costs k dollars')
 open(B+'work/patched.html','w').write(s)
 print('patched',len(s),'gx bytes',len(js))
