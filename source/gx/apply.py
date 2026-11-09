@@ -179,6 +179,9 @@ must('desc:"a short informative piece with a topic sentence, facts, and a closin
 must('html:()=>passage("Bees in the Orchard",BEES),qs:["What do bees drink','html:()=>passage("Bees in the Orchard",BEES),picSup:true,fig:()=>\'<div style="text-align:center;margin:8px 0"><img alt="In spring, a bee visits apple blossoms, pollen sticks to its leg, it moves pollen to the next flower, and the flower grows into an apple. Spring flowers on the left, fall apples on the right" style="max-width:100%;width:760px;height:auto;border-radius:14px" src="data:image/webp;base64,\'+window.TP_IMG1.beepoll+\'"></div>\',qs:["What do bees drink')
 must('std:["SL.2.2"],n:4,dur:90,read:CIDER,','std:["SL.2.2"],n:4,dur:90,read:CIDER,picSup:true,fig:()=>\'<div style="text-align:center;margin:8px 0"><img alt="Five pictures in order: children pick apples, the apples are washed in a tub, a press squeezes the apples and cider pours into a jug, the jug of cider sits next to a warm mug, and the children drink cider" src="data:image/webp;base64,\'+window.TP_IMG1.cidersteps+\'" style="width:720px;max-width:100%;height:auto;border-radius:16px"></div>\',')
 must('<p class="huge" aria-hidden="true">${ico("apple",96)}${ico("cocoa",96)}</p><p class="big" style="text-align:center">Listen carefully. Your teacher will read about how apple cider is made.</p>','<p class="big" style="text-align:center">Listen carefully. Your teacher will read about how apple cider is made.</p>')
+must('3/4 × 8/1 = 24/8 = 6','3/4 × 8/1 = 24/4 = 6')
+must('a pumpkin growing on a vine")}const NIB','a pumpkin growing on a vine",900)}const NIB')
+must('const poemHtml=()=>`<div class="poem" style="font-size:1.12rem;padding:10px 12px;white-space:nowrap">','const poemHtml=()=>`<div class="poem" style="font-size:1.12rem;padding:10px 12px;white-space:normal">',2)
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
@@ -353,5 +356,46 @@ def _unblack(m):
     return out
 from PIL import ImageFilter
 s=_re.sub(r'[A-Za-z0-9+/]{3000,}={0,2}',_unblack,s)
+
+# American spellings
+_us=[("millilitre","milliliter"),("centimetre","centimeter"),("kilometre","kilometer"),("millimetre","millimeter"),("metre","meter"),("centre","center"),
+("colour","color"),("favour","favor"),("behaviour","behavior"),("defence","defense"),("programme","program"),("organise","organize"),
+("recognise","recognize"),("neighbouring","neighboring"),("neighbour","neighbor"),("labelled","labeled"),("travelled","traveled"),("travelling","traveling")]
+def _usfix(m):
+    w=m.group(0);lw=w.lower()
+    if lw.startswith('labelledby'): return w
+    for a,b in _us:
+        if lw.startswith(a):
+            r=b+lw[len(a):]
+            if lw.startswith("organise") and lw[len(a):] not in("","d","s","r","rs"): continue
+            return (r[0].upper()+r[1:]) if w[0].isupper() else r
+    return w
+_n=len(_re.findall(r"\b(?:millilitre|centimetre|kilometre|millimetre|metre|centre|colour|favour|behaviour|defence|programme|organise|recognise|neighbour|labelled|travelled|travelling)\w*",s,_re.I))
+s=_re.sub(r"\b(?:millilitre|centimetre|kilometre|millimetre|metre|centre|colour|favour|behaviour|defence|programme|organise|recognise|neighbour|labelled|travelled|travelling)\w*",_usfix,s,flags=_re.I)
+print('american spellings',_n)
+
+# more American spellings (whole words, with endings)
+_us2=[("organisation","organization"),("organising","organizing"),("reorganised","reorganized"),("analysing","analyzing"),("criticise","criticize"),("crystallise","crystallize"),
+("fertilise","fertilize"),("fertiliser","fertilizer"),("fibre","fiber"),("harbour","harbor"),("honour","honor"),("judgement","judgment"),("kerb","curb"),("labour","labor"),
+("licence","license"),("litre","liter"),("mould","mold"),("plough","plow"),("practise","practice"),("recognising","recognizing"),("summarise","summarize"),
+("theatre","theater"),("tonne","ton"),("vapour","vapor"),("aluminium","aluminum"),("armouring","armoring"),("authorised","authorized"),("characterised","characterized"),
+("magnetised","magnetized"),("memorising","memorizing"),("paralysed","paralyzed"),("patronise","patronize"),("standardised","standardized"),("encyclopaedia","encyclopedia"),
+("snowplough","snowplow"),("ploughshare","plowshare"),("labourer","laborer"),("fulfil","fulfill"),("maths","math"),("grey","gray"),("unfertilised","unfertilized")]
+_us2.sort(key=lambda x:-len(x[0]))
+_pat2=r"\b(?:"+"|".join(a for a,b in _us2)+r")(?:s|d|es|ed|ing|r|rs)?\b"
+def _usfix2(m):
+    w=m.group(0);lw=w.lower()
+    nx=s[m.end():m.end()+1]
+    if lw=='grey' and s[m.start()-1:m.start()] not in (' ','>'): return w
+    for a,b in _us2:
+        if lw.startswith(a):
+            r=b+lw[len(a):]
+            if a=='fulfil' and lw[len(a):]=='l': return w
+            r=r.replace('tons','tons')
+            return (r[0].upper()+r[1:]) if w[0].isupper() else r
+    return w
+_n2=len(_re.findall(_pat2,s,_re.I))
+s=_re.sub(_pat2,_usfix2,s,flags=_re.I)
+print('american spellings 2',_n2)
 open(B+'work/patched.html','w').write(s)
 print('patched',len(s),'gx bytes',len(js))
