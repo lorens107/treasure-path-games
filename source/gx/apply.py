@@ -190,10 +190,11 @@ must('{title:"Story Questions",std:["RL.1.1"],dur:90,qs:["Where was Nico','{titl
 must('.lp-card b{font-family:var(--font-display);font-size:clamp(.92rem,1.7vw,1.15rem);line-height:1.15;overflow-wrap:anywhere;min-width:0}','.lp-card b{font-family:var(--font-display);font-size:clamp(.8rem,1.35vw,.95rem);line-height:1.15;overflow-wrap:break-word;min-width:0}')
 must('wordCards(["we","go","is","me","he","and","topHat","log","pup"])','wordCards(["we","go","is","me","he","and","hat","log","pup"])')
 must('[emo("purpleFlower"),"purpleFlower"]','[emo("purpleFlower"),"flower"]')
-must('html:()=>story("A Big Job",JOB),qs:[','html:()=>story("A Big Job",JOB),picSup:true,fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="Jill and Russ pull a red wagon with a big smiling pumpkin in it" src="data:image/webp;base64,${window.TP_IMG1.wp.wagonpump}" style="width:600px;max-width:100%;height:auto;border-radius:16px"></div>`,qs:[')
+must('html:()=>story("A Big Job",JOB),qs:[','html:()=>story("A Big Job",JOB),picSup:true,fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="Jill hugs a huge pumpkin, then tries to lift it. She runs to get Russ and his red wagon. They roll it up a ramp, pull the wagon up the hill, and win a blue ribbon" src="data:image/webp;base64,${window.TP_IMG1.wp.wagonpump}" style="width:720px;max-width:100%;height:auto;border-radius:16px"></div>`,qs:[')
 must('html:()=>`<p class="huge" aria-hidden="true">${ico("ear",96)} ${ico(CORN,96)}</p><p class="big" style="text-align:center">Listen. Then say it.</p>`,key:["Blend: /v/','html:()=>`<div style="text-align:center;margin:8px 0"><img alt="Six pictures: a vine, a stack of books, a seed sprouting, corn growing in a row, a hay bale, and a straw hat" src="data:image/webp;base64,${window.TP_IMG1.wp.cornsounds}" style="width:680px;max-width:100%;height:auto"></div><p class="big" style="text-align:center">Listen. Then say it.</p>`,key:["Blend: /v/')
 must('function pumpkin(x,y,s){s=s||1;return`<g transform="translate(${x},${','function pumpkin(x,y,s){s=s||1;const PI=window.TP_IMG1&&window.TP_IMG1.wp&&window.TP_IMG1.wp.pumpkinS;if(PI)return`<image href="data:image/webp;base64,${PI}" x="${x-34*s}" y="${y-34*s}" width="${68*s}" height="${68*s}"/>`;return pumpkinOld(x,y,s)}function pumpkinOld(x,y,s){s=s||1;return`<g transform="translate(${x},${')
 must('std:["RF.1.3"],kind:"words",words:WORDS,n:12,dur:95,dir:"Read each word out loud. The last one is a silly word. Just sound it out.",','std:["RF.1.3"],kind:"words",words:WORDS,wordPics:1,n:12,dur:95,dir:"Read each word out loud. The last one is a silly word. Just sound it out.",')
+must('${story("Frost",FROST)}`,key:["72 words,','${story("Frost",FROST)}`,picSup:true,fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="Val runs up a frosty hill toward the pumpkin patch, stops to look at a chipmunk with a nut on a log, watches it run off, then carries a pumpkin up the steps at home" src="data:image/webp;base64,${window.TP_IMG1.wp.frost}" style="width:760px;max-width:100%;height:auto;border-radius:16px"></div>`,key:["72 words,')
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
@@ -422,6 +423,26 @@ def _usfix2(m):
 _n2=len(_re.findall(_pat2,s,_re.I))
 s=_re.sub(_pat2,_usfix2,s,flags=_re.I)
 print('american spellings 2',_n2)
+# LP7 grade 7: old British money to US money (quarter = old threepence, dollars = old shillings)
+_i7=s.index('TP.register({id:"lp7-g7"'); _j7=s.index('TP.register({id:',_i7+10); _m7=s[_i7:_j7]
+_R7=[('["threepence","three old British pennies. Twelve pennies made one shilling."],',''),
+('["shilling","an old British coin worth twelve pence"],',''),
+('such as steward, shilling, ledger','such as steward, Institute, ledger'),
+('Threepence. She stood up in front of a full hall over threepence.','A quarter. She stood up in front of a full hall over a quarter.'),
+('"Threepence a Week"','"A Quarter a Week"'),
+('"Pence paid, p","3","12","24","156"','"Dollars paid, p","0.25","1","2","13"'),
+('(0, 0) and (1, 3) would','(0, 0) and (1, 0.25) would'),
+('3 divided by 1, 12 divided by 4, 24 divided by 8, and 156 divided by 52 are all 3.','0.25 divided by 1, 1 divided by 4, 2 divided by 8, and 13 divided by 52 are all 0.25.'),
+('"3, meaning 3 pence for every week paid.','"0.25, meaning $0.25 (a quarter) for every week paid.'),
+('p = 3w. The point (0, 0)','p = 0.25w. The point (0, 0)'),
+('(1, 3) means one week costs 3 pence,','(1, 0.25) means one week costs $0.25,'),
+('0.28, or 28 pence.','0.28, or 28 cents.'),('another 3 pence each','another 3 cents each'),
+('ten shillings','ten dollars'),('eleven shillings','eleven dollars'),
+('the threepence','the quarter'),('our threepence','our quarter'),('threepence','a quarter')]
+for _a,_b in _R7:
+    assert _a in _m7,('lp7 missing',_a)
+    _m7=_m7.replace(_a,_b)
+s=s[:_i7]+_m7+s[_j7:]
 _np=s.count('\u00a3'); s=s.replace('\u00a3','$'); s=s.replace('&pound;','$'); print('pound signs to dollars',_np)
 s=s.replace('The eight draws, in pounds','The eight draws, in dollars').replace('costs k pounds','costs k dollars')
 open(B+'work/patched.html','w').write(s)
