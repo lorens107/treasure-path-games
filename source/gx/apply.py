@@ -295,6 +295,21 @@ for _a,_b in [('const row=(y,n,fill)=>{','const row=(y,n,fill,bc)=>{'),('height=
     assert _m12.count(_a)==1,_a
     _m12=_m12.replace(_a,_b)
 s=s[:_i12]+_m12+s[_j12:]
+_i13=s.index('TP.register({id:"lp3-g1"');_j13=s.index('TP.register({id:',_i13+10);_m13=s[_i13:_j13]
+_a='{title:"Scarecrow Fix It",std:["L.1.1"],dur:70,dir:"Listen to your teacher read each one. Say your answer out loud.",qs:['
+assert _m13.count(_a)==1
+_qf='(function(){var FR=function(a,end,lab){var h=\'<div style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px;margin:8px 0 4px;padding:10px 20px;border:3px dashed var(--line);border-radius:16px;background:var(--card,#fff);font-size:2rem;font-weight:700">\';a.forEach(function(w){h+=w.charAt(0)==="_"?\'<span style="display:inline-block;min-width:110px;border-bottom:4px solid var(--ink,#333);height:1.6em"></span>\':\'<span>\'+w+\'</span>\'});if(end)h+=\'<span style="display:inline-flex;flex-direction:column;align-items:center;line-height:1"><span style="font-size:3.6rem;color:#c0392b">\'+end+\'</span><span style="font-size:.7rem;font-weight:600">\'+lab+\'</span></span>\';return function(){return\'<div style="margin:2px 0 6px">\'+h+\'</div></div>\'}};return[FR(["Yesterday I","_____","a pumpkin"],".","period"),FR(["_____","pumpkins are big"],".","period"),FR(["_____","see a duck"],".","period"),FR(["I put on a coat because","_____"],".","period"),FR(["The scarecrow stands","_____","the corn"],".","period"),FR(["Where","_____","_____"],"?","question mark")]})()'
+_m13=_m13.replace(_a,'{title:"Scarecrow Fix It",std:["L.1.1"],dur:70,dir:"Listen to your teacher read each one. Say your answer out loud.",picSup:true,fig:function(){return""},qfig:'+_qf+',qs:[')
+s=s[:_i13]+_m13+s[_j13:]
+import re as _re9
+_dec=_re9.compile(r'html:\(\)=>`<p[^>]*aria-hidden="true"[^>]*>(?:\$\{ico\([^)]*\)\}\s*)+</p>`,(?=qs:)')
+_M9=_re9.compile(r'^(K|[1-8])\.(OA|NBT|MD|G|NF|CC|NS|RP|EE|F|SP)\b')
+def _sub9(m):
+    ctx=s[max(0,m.start()-400):m.start()];ss=_re9.findall(r'std:\["([^"]+)"',ctx)
+    r='' if ss and _M9.match(ss[-1]) else m.group(0)
+    print('dec',ss[-1:] ,'removed' if r=='' else 'kept')
+    return r
+_n9=len(_dec.findall(s));s=_dec.sub(_sub9,s);print('removed math decorations',_n9-len(_dec.findall(s)))
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
@@ -545,5 +560,6 @@ for _a,_b in _R7:
 s=s[:_i7]+_m7+s[_j7:]
 _np=s.count('\u00a3'); s=s.replace('\u00a3','$'); s=s.replace('&pound;','$'); print('pound signs to dollars',_np)
 s=s.replace('The eight draws, in pounds','The eight draws, in dollars').replace('costs k pounds','costs k dollars')
+_n9=len(_dec.findall(s));s=_dec.sub(_sub9,s);print('removed math decorations (final)',_n9-len(_dec.findall(s)))
 open(B+'work/patched.html','w').write(s)
 print('patched',len(s),'gx bytes',len(js))
