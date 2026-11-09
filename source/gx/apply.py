@@ -182,6 +182,8 @@ must('<p class="huge" aria-hidden="true">${ico("apple",96)}${ico("cocoa",96)}</p
 must('3/4 × 8/1 = 24/8 = 6','3/4 × 8/1 = 24/4 = 6')
 must('a pumpkin growing on a vine")}const NIB','a pumpkin growing on a vine",900)}const NIB')
 must('const poemHtml=()=>`<div class="poem" style="font-size:1.12rem;padding:10px 12px;white-space:nowrap">','const poemHtml=()=>`<div class="poem" style="font-size:1.12rem;padding:10px 12px;white-space:normal">',2)
+must('{id:4,title:"Story Questions",parts:[{title:"Story Questions",std:["RL.1.1"],dur:90,qs:["What did the wind','{id:4,title:"Story Questions",parts:[{title:"Story Questions",std:["RL.1.1"],dur:90,dir:"Read the story out loud. Then listen to each question and answer out loud.",html:()=>`<p class="passage">${FABLE}</p>`,qs:["What did the wind')
+must('{title:"Story Questions",std:["RL.1.1"],dur:90,qs:["Where was Nico','{title:"Story Questions",std:["RL.1.1"],dur:90,dir:"Read the story out loud. Then listen to each question and answer out loud.",html:()=>`<p class="passage">${STORY}</p>`,qs:["Where was Nico')
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
@@ -373,6 +375,19 @@ def _usfix(m):
 _n=len(_re.findall(r"\b(?:millilitre|centimetre|kilometre|millimetre|metre|centre|colour|favour|behaviour|defence|programme|organise|recognise|neighbour|labelled|travelled|travelling)\w*",s,_re.I))
 s=_re.sub(r"\b(?:millilitre|centimetre|kilometre|millimetre|metre|centre|colour|favour|behaviour|defence|programme|organise|recognise|neighbour|labelled|travelled|travelling)\w*",_usfix,s,flags=_re.I)
 print('american spellings',_n)
+
+# LP3 grade 1 and 3: use the new pumpkin sticker instead of the old drawn pumpkin
+def _newpump(s):
+    for mid in ('lp3-g1',):
+        a=s.find('TP.register({id:"%s"'%mid)
+        assert a>=0
+        b=s.find('</script>',a)
+        seg=s[a:b]
+        seg2=_re.sub(r'(?<![\w.])pumpkin\((\d+)\)',lambda m:'ico("pumpkin",%s)'%m.group(1),seg)
+        print('new pumpkins',mid,len(_re.findall(r'(?<![\w.])pumpkin\((\d+)\)',seg)))
+        s=s[:a]+seg2+s[b:]
+    return s
+s=_newpump(s)
 
 # more American spellings (whole words, with endings)
 _us2=[("organisation","organization"),("organising","organizing"),("reorganised","reorganized"),("analysing","analyzing"),("criticise","criticize"),("crystallise","crystallize"),
