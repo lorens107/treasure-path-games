@@ -69,7 +69,7 @@ window.GXteach=function(p,t,grade,call){
  return "Read the words on the screen aloud to the student, once, and again if they ask. "+t};
 })();
 
-window.TP_TIME={"RF.1.4":"Successive readings may need to be completed to fully measure this standard.","RF.2.4":"Successive readings may need to be completed to fully measure this standard.","RF.3.4":"Successive readings may need to be completed to fully measure this standard.","RF.4.4":"Successive readings may need to be completed to fully measure this standard.","RF.5.4":"Successive readings may need to be completed to fully measure this standard.","SL.1.4":"The memorize and recite part cannot be checked in one meeting. Students need days of practice. Check it over the learning period.","SL.5.4":"The memorize and recite part cannot be checked in one meeting. Students need days of practice. Check it over the learning period."};
+window.TP_TIME={"RF.1.4":"Successive readings may need to be completed to fully measure this standard.","RF.2.4":"Successive readings may need to be completed to fully measure this standard.","RF.3.4":"Successive readings may need to be completed to fully measure this standard.","RF.4.4":"Successive readings may need to be completed to fully measure this standard.","RF.5.4":"Successive readings may need to be completed to fully measure this standard.","SL.1.4":"Students may need additional time to memorize or prepare a presentation to fully assess this standard.","SL.5.4":"Students may need additional time to memorize or prepare a presentation to fully assess this standard."};
 
 window.TP_BT={flat:"@@BTF@@",rod:"@@BTR@@",cube:"@@BTC@@"};
 
