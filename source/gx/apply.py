@@ -277,7 +277,7 @@ must('width="${Math.min(W,680)}" role="img" aria-label="Ruler measuring an objec
 _i10=s.index('TP.register({id:"lp3-g1"');_j10=s.index('TP.register({id:',_i10+10);_m10=s[_i10:_j10]
 _a='fig:()=>F.row(unitsFig()),qs:["How many blocks long is vine A?"'
 assert _m10.count(_a)==1
-_m10=_m10.replace(_a,'fig:()=>F.row(unitsFig()),supfig:()=>`<div style="text-align:center;margin:8px 0"><img alt="Two vines with same-size blocks laid end to end. The top vine has 5 yellow blocks. The bottom vine has 3 purple blocks." src="data:image/webp;base64,${window.TP_IMG1.wp.blocks19}" style="width:560px;max-width:100%;height:auto;border-radius:16px"></div>`,qs:["How many blocks long is vine A?"')
+_m10=_m10.replace(_a,'fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="Two vines with same-size blocks laid end to end. The top vine has 5 yellow blocks. The bottom vine has 3 purple blocks." src="data:image/webp;base64,${window.TP_IMG1.wp.blocks19}" style="width:560px;max-width:100%;height:auto;border-radius:16px"></div>`,qs:["How many blocks long is vine A?"')
 _a='fig:()=>F.row([F.clock(3,0,200),"A"],[F.clock(7,30,200),"B"]),qs:["Clock A:'
 assert _m10.count(_a)==1
 _m10=_m10.replace(_a,'fig:()=>F.row([F.clock(3,0,200),"A"],[F.clock(7,30,200),"B"]),supfig:()=>`<div style="text-align:center;margin:8px 0"><img alt="A clock face. The short red hour hand points to the 10. The long blue minute hand points to the 12. Big numbers 1 to 12 are the hours. Small labels around the edge count minutes by fives, from :00 to :55." src="data:image/webp;base64,${window.TP_IMG1.wp.clocklab}" style="width:340px;max-width:100%;height:auto"></div>`,qs:["Clock A:')
