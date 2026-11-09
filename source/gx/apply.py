@@ -259,6 +259,10 @@ _a='Look at them go!</p>`,qs:["How many sentences do you see?'
 assert _m8.count(_a)==1
 _m8=_m8.replace(_a,'Look at them go!</p>`,picSup:true,fig:()=>`<div style="text-align:center;margin:8px 0"><img alt="A mother duck and three ducklings swimming in a pond with autumn trees" src="data:image/webp;base64,${window.TP_IMG1.wp.ducks}" style="width:560px;max-width:100%;height:auto;border-radius:16px"></div>`,qs:["How many sentences do you see?')
 s=s[:_i8]+_m8+s[_j8:]
+_i9=s.index('TP.register({id:"lp3-g1"');_j9=s.index('TP.register({id:',_i9+10);_m9=s[_i9:_j9]
+_a='<p class="huge" aria-hidden="true">${ico(SUNFL,96)}</p><p class="big" style="text-align:center">Listen.</p>'
+assert _m9.count(_a)==1
+s=s[:_i9]+_m9.replace(_a,'')+s[_j9:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
