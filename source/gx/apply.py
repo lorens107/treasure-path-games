@@ -311,7 +311,7 @@ def _sub9(m):
     return r
 _n9=len(_dec.findall(s));s=_dec.sub(_sub9,s);print('removed math decorations',_n9-len(_dec.findall(s)))
 must('const A=()=>[Pc(hay,54,1.3,12),Ps(vine,98,-6),Pc(fleaf,28,1.5,-12),Pc(hay,54,1.25,12),Ps(vine,98,-2),Pc(fleaf,28,1.5,-12),Pc(hay,54,1.2,12),Ps(vine,98,-6)],B=()=>[Ps(vine,98,-4),Pc(fleaf,28,1.5,-12),Pc(hay,54,1.3,12),Ps(vine,98,-8),Pc(hay,54,1.2,12),Pc(fleaf,28,1.5,-12),Ps(vine,98,-2),Pc(fleaf,28,1.5,-12)];','const A=()=>[Pc(hay,54,1.3,12),Pc(fleaf,28,1.5,-12),Ps(vine,98,-6),Pc(hay,54,1.25,12),Pc(fleaf,28,1.5,-12),Pc(hay,54,1.2,12)],B=()=>[Pc(fleaf,28,1.5,-12),Pc(hay,54,1.3,12),Ps(vine,98,-4),Pc(fleaf,28,1.5,-12),Pc(hay,54,1.2,12),Pc(fleaf,28,1.5,-12)];')
-must('(p.wordPics===2?window.TP_IMG1.wp2:window.TP_IMG1.wp)','(p.wordPics===3?window.TP_IMG1.wp3:p.wordPics===2?Object.assign({},window.TP_IMG1.wp2,window.TP_IMG1.wp3):window.TP_IMG1.wp)')
+must('(p.wordPics===2?window.TP_IMG1.wp2:window.TP_IMG1.wp)','(p.wordPics===4?new Proxy(window.TP_IMG1.wp3,{get:(t,k)=>t["sw_"+k]}):p.wordPics===3?window.TP_IMG1.wp3:p.wordPics===2?Object.assign({},window.TP_IMG1.wp2,window.TP_IMG1.wp3):window.TP_IMG1.wp)')
 _i14=s.index('TP.register({id:"lp3-g2"');_j14=s.index('TP.register({id:',_i14+10);_m14=s[_i14:_j14]
 _a='{std:["RF.2.3"],kind:"words",words:'
 assert _m14.count(_a)>=1,_m14.count(_a)
@@ -400,6 +400,11 @@ _a='fig:()=>shapeSet(),qs:["Shape 1: how many sides does it have?'
 assert _m25.count(_a)==1
 _m25=_m25.replace(_a,'fig:()=>`<div style=\'text-align:center;margin:10px 0\'><img alt=\'Three shapes numbered 1, 2, and 3. Shapes 1 and 2 are flat shapes with straight sides. Shape 3 is a solid shape.\' src=\'data:image/webp;base64,${window.TP_IMG1.wp3.shapes3}\' style=\'width:760px;max-width:100%\'></div>`,qs:["Shape 1: how many sides does it have?')
 s=s[:_i25]+_m25+s[_j25:]
+_i26=s.index('TP.register({id:"lp3-g3"');_j26=s.index('TP.register({id:',_i26+10);_m26=s[_i26:_j26]
+_a='kind:"words",words:WORDS,n:12'
+assert _m26.count(_a)==1
+_m26=_m26.replace(_a,'kind:"words",wordPics:4,words:WORDS,n:12')
+s=s[:_i26]+_m26+s[_j26:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
