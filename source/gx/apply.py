@@ -515,6 +515,11 @@ for _t in ('{title:"Use the Text",std:["RI.4.1"],','{title:"Put It Together",std
     assert _m29.count(_t)==1,_t
     _m29=_m29.replace(_t,_t+_uf)
 s=s[:_i29]+_m29+s[_j29:]
+_i30=s.index('TP.register({id:"lp4-g4"');_j30=s.index('TP.register({id:',_i30+10);_m30=s[_i30:_j30]
+for _k in ('{id:5,title:"Field Notes",parts:[{std:["W.4.8"],','std:["W.4.2","L.4.1"],n:5,label:"checks met",dur:300,dir:WRITE_DIR,'):
+    assert _m30.count(_k)==1,_k
+    _m30=_m30.replace(_k,_k+_uf)
+s=s[:_i30]+_m30+s[_j30:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
