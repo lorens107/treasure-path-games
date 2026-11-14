@@ -585,10 +585,12 @@ _sf='supfig:function(){return\'<div style="text-align:center;margin:10px 0"><img
 _m35=_m35.replace(_k,_k+_sf)
 s=s[:_i35]+_m35+s[_j35:]
 _i36=s.index('TP.register({id:"lp4-g4"');_j36=s.index('TP.register({id:',_i36+10);_m36=s[_i36:_j36]
-_k='std:["4-LS1-1"],n:3,dur:75,dir:"Look at the two living things.'
-assert _m36.count(_k)==1
-_pf2='std:["4-LS1-1"],n:3,dur:75,supfig:function(){return\'<div style="text-align:center;margin:10px 0"><img alt="A pine tree and a deer in a snowy forest with labels. The pine has thin needles instead of flat leaves, thick bark, and cones that hold its seeds. The deer has a thick winter coat, a four-part stomach inside its body, and long legs." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.pd4+\'" style="max-width:100%;width:700px;height:auto;border-radius:10px"></div>\'},dir:"Look at the two living things.'
-_m36=_m36.replace(_k,_pf2)
+_o='<div class="figure">${F.icon("pine",104)}${F.icon("deer",104)}</div>'
+assert _m36.count(_o)==1
+_m36=_m36.replace(_o,'<div style="text-align:center;margin:10px 0"><img alt="A pine tree and a deer in a snowy forest with labels. The pine has thin needles instead of flat leaves, thick bark, and cones that hold its seeds. The deer has a thick winter coat, a four-part stomach inside its body, and long legs." src="data:image/webp;base64,${window.TP_IMG1.wp3.pd4}" style="max-width:100%;width:700px;height:auto;border-radius:10px"></div>')
+_o='\n     <div class="figure">${F.icon("deer",104)}${F.icon("mountain",104)}</div>'
+assert _m36.count(_o)==1
+_m36=_m36.replace(_o,'')
 s=s[:_i36]+_m36+s[_j36:]
 _i37=s.index('TP.register({id:"lp4-g4"');_j37=s.index('TP.register({id:',_i37+10);_m37=s[_i37:_j37]
 _k='std:["4-LS1-2"],n:3,dur:75,dir:"Read what happens, then answer.'
