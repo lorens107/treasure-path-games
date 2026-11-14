@@ -488,7 +488,7 @@ s=s[:_i27]+_m27+s[_j27:]
 SNOWF=_json.load(open('../gem/snowflakes.json'))
 _sf='['+','.join('["%s",%d,%d]'%tuple(x) for x in SNOWF)+']'
 must('itemSvg:c=>sv(flake(0,0,1.5,c),"-40 -40 80 80"),itemSmall:()=>`<svg viewBox="-26 -26 52 52" width="22" height="22" aria-hidden="true">${flake(0,0,1)}</svg>`,','itemSvg:c=>{const F=SNOWFS[(+c||0)%SNOWFS.length];return`<svg viewBox="0 0 200 200" aria-hidden="true"><image href="data:image/webp;base64,${F[0]}" x="${(200-F[1])/2}" y="${(200-F[2])/2}" width="${F[1]}" height="${F[2]}"/></svg>`},itemSmall:i=>{const F=SNOWFS[(+i||0)%SNOWFS.length];return`<svg viewBox="0 0 200 200" width="24" height="24" aria-hidden="true"><image href="data:image/webp;base64,${F[0]}" x="${(200-F[1])/2}" y="${(200-F[2])/2}" width="${F[1]}" height="${F[2]}"/></svg>`},')
-must('const SNOWY={key:"snowy"','const SNOWFS='+_sf+';const SNOWY={key:"snowy"')
+must('const SNOWY={key:"snowy"','const SNOWFS='+_sf+';window.TP_SNOWFS=SNOWFS;const SNOWY={key:"snowy"')
 must('T.itemSvg(T.key==="treasure"?','T.itemSvg(T.key==="snowy"?c:T.key==="treasure"?')
 _i28=s.index('TP.register({id:"lp4-g4"');_j28=s.index('TP.register({id:',_i28+10);_m28=s[_i28:_j28]
 _pf='supfig:function(){return\'<div style="text-align:center;margin:10px 0"><img alt="Three kids ice skating on a frozen pond at sunset. A girl in a purple hat pushes a wooden chair across the ice while a friend in a pink coat gives a thumbs up." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.pond4+\'" style="max-width:100%;width:560px;height:auto;border-radius:14px"></div>\'},'
@@ -497,6 +497,17 @@ for _t in ('{title:"Prove It",std:["RL.4.1"],','{title:"Word Meanings",std:["RL.
     _m28=_m28.replace(_t,_t+_pf)
 s=s[:_i28]+_m28+s[_j28:]
 must('[...card.children].forEach(e=>{if(e.tagName!=="OL"&&e.hidden)e.hidden=false});','[...card.children].forEach(e=>{if(e.tagName!=="OL"&&e.hidden&&!e.classList.contains("scene-sup"))e.hidden=false});')
+GEMS=_json.load(open('../gem/gems.json'))
+_gj='['+','.join('["%s",%d,%d]'%tuple(x) for x in GEMS)+']'
+must('const SNOWFS=','const SNOWGEMS='+_gj+';function snowGem(i,px){const F=SNOWGEMS[(+i||0)%SNOWGEMS.length],w=F[1]>=F[2]?px:Math.round(px*F[1]/F[2]),h=F[2]>=F[1]?px:Math.round(px*F[2]/F[1]);return`<img alt="" width="${w}" height="${h}" style="width:${w}px;height:auto;vertical-align:middle" src="data:image/webp;base64,${F[0]}">`}function gemRow(n,px){return`<span style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px auto 4px;max-width:760px">${Array.from({length:n},(_,i)=>snowGem(i,px||52)).join("")}</span>`}window.snowGem=snowGem;window.gemRow=gemRow;const SNOWFS=')
+must('I.snowflake=s=>SV(s,"snowflake",','I.snowflake=s=>{const F=window.TP_SNOWFS[0];return`<svg class="tp-ic" viewBox="0 0 100 100" width="${s}" height="${s}" role="img" aria-label="snowflake"><image href="data:image/webp;base64,${F[0]}" x="${(100-F[1]*100/Math.max(F[1],F[2]))/2}" y="${(100-F[2]*100/Math.max(F[1],F[2]))/2}" width="${F[1]*100/Math.max(F[1],F[2])}" height="${F[2]*100/Math.max(F[1],F[2])}"/></svg>`};const _oldSnowflake=s=>SV(s,"snowflake",')
+must('${stickerFace(T.bonusIcon,22)} ${S.bonus}','${T.key==="snowy"?snowGem(0,22):stickerFace(T.bonusIcon,22)} ${S.bonus}')
+must('${!older()&&S.bonus&&T.key==="pumpkin"','${T.key==="snowy"&&S.bonus?`<div role="img" aria-label="${S.bonus} bonus ice ${S.bonus===1?"gem":"gems"}">${gemRow(S.bonus,52)}</div>`:""}${!older()&&S.bonus&&T.key==="pumpkin"')
+must('o.querySelector("#spinRes").textContent=W[k].l;','o.querySelector("#spinRes").textContent=W[k].l;if(T.key==="snowy"&&/bonus/.test(W[k].l)){const gn=parseInt(String(W[k].t).replace("+",""))||1;o.querySelector("#spinRes").insertAdjacentHTML("beforeend",gemRow(gn,56))}')
+import re as _re
+_rx=_re.compile(r'"snowflake":\{"src":"data:image/webp;base64,[A-Za-z0-9+/=]+","w":\d+,"h":\d+\}')
+assert len(_rx.findall(s))==1
+s=_rx.sub(lambda m:'"snowflake":{"src":"data:image/webp;base64,%s","w":%d,"h":%d}'%(SNOWF[0][0],SNOWF[0][1],SNOWF[0][2]),s,count=1)
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
