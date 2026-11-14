@@ -612,6 +612,11 @@ _o='std:["4-ESS2-1"],n:3,dur:75,dir:"Look at the measurements. Answer out loud o
 assert _m39.count(_o)==1
 _m39=_m39.replace(_o,'std:["4-ESS2-1"],n:3,dur:75,dir:"Look at the measurements. These questions are about how weather affects rock. Answer out loud or in writing."')
 s=s[:_i39]+_m39+s[_j39:]
+_i40=s.index('TP.register({id:"lp4-g4"');_j40=s.index('TP.register({id:',_i40+10);_m40=s[_i40:_j40]
+for _o,_n in (('<tr><td>1 west foot</td>','<tr><td>1</td>'),('<tr><td>4 crest</td>','<tr><td>4</td>'),('<tr><td>6 east foot</td>','<tr><td>6</td>'),('from west to east.</p>\n     <div class="figure">${F.icon("mountain",80)}','from west to east. Point 1 is at the far west. Point 6 is at the far east.</p>\n     <div class="figure">${F.icon("mountain",80)}'),('at the 2,600 metre crest','at point 4, 2,600 metres')):
+    assert _m40.count(_o)==1,_o
+    _m40=_m40.replace(_o,_n)
+s=s[:_i40]+_m40+s[_j40:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
