@@ -520,6 +520,12 @@ for _k in ('{id:5,title:"Field Notes",parts:[{std:["W.4.8"],','std:["W.4.2","L.4
     assert _m30.count(_k)==1,_k
     _m30=_m30.replace(_k,_k+_uf)
 s=s[:_i30]+_m30+s[_j30:]
+_i31=s.index('TP.register({id:"lp4-g4"');_j31=s.index('TP.register({id:',_i31+10);_m31=s[_i31:_j31]
+_k='{id:6,title:"Snowflake Listen",short:"Listen",parts:[{std:["SL.4.2"],'
+assert _m31.count(_k)==1
+_ff='supfig:function(){return\'<div style="text-align:center;margin:10px 0"><img alt="How a snowflake is made: a cloud, a crystal forms on a speck of dust, arms grow from six corners, wind and changing air change the arms, and the snowflake falls through colder layers." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.flake4+\'" style="max-width:100%;width:640px;height:auto;border-radius:14px"></div>\'},'
+_m31=_m31.replace(_k,_k+_ff)
+s=s[:_i31]+_m31+s[_j31:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
