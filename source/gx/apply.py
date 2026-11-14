@@ -607,6 +607,11 @@ assert _m38.count(_o)==1
 _m38=_m38.replace(_o,'</p>')
 s=s[:_i38]+_m38+s[_j38:]
 must('animalbank2:{name:"Animal bank"','layers:{name:"How layers stack",ok:st=>st.title==="The Road Cut"&&String(S.grade)==="4",html:()=>`<div style="background:#fff;border:2px solid #7aa7d9;border-radius:14px;padding:10px 16px;font-size:1.15rem;line-height:1.5"><p><b>Rock layers stack up over time.</b></p><p>The oldest layer is on the bottom. The newest layer is on the top.</p></div>`},animalbank2:{name:"Animal bank"')
+_i39=s.index('TP.register({id:"lp4-g4"');_j39=s.index('TP.register({id:',_i39+10);_m39=s[_i39:_j39]
+_o='std:["4-ESS2-1"],n:3,dur:75,dir:"Look at the measurements. Answer out loud or in writing."'
+assert _m39.count(_o)==1
+_m39=_m39.replace(_o,'std:["4-ESS2-1"],n:3,dur:75,dir:"Look at the measurements. These questions are about how weather affects rock. Answer out loud or in writing."')
+s=s[:_i39]+_m39+s[_j39:]
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
