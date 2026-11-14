@@ -578,6 +578,27 @@ assert _m34.count(_k)==1
 _of='supfig:function(){return\'<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:10px 0"><figure style="margin:0;text-align:center;flex:1 1 320px;max-width:440px"><img alt="A skating rink on the frozen pond at sunset. The ice is wide and smooth with room to skate. Lamps and string lights hang around the edge, with benches and snowy trees." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.rink4+\'" style="width:100%;height:auto;border-radius:10px"><figcaption style="font-weight:700;margin-top:4px">A bigger skating rink</figcaption></figure><figure style="margin:0;text-align:center;flex:1 1 320px;max-width:440px"><img alt="A warming hut with a snowy roof and glowing lights. Two cups of hot cocoa and a pot of cocoa sit on the counter. A fire pit, a bench, snowshoes, and a sled are outside." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.hut4+\'" style="width:100%;height:auto;border-radius:10px"><figcaption style="font-weight:700;margin-top:4px">A warming hut with hot cocoa</figcaption></figure></div>\'},'
 _m34=_m34.replace(_k,_k+_of)
 s=s[:_i34]+_m34+s[_j34:]
+_i35=s.index('TP.register({id:"lp4-g4"');_j35=s.index('TP.register({id:',_i35+10);_m35=s[_i35:_j35]
+_k='std:["W.4.3","L.4.1"],n:5,label:"checks met",dur:300,dir:WRITE_DIR,'
+assert _m35.count(_k)==1
+_sf='supfig:function(){return\'<div style="text-align:center;margin:10px 0"><img alt="Six pictures of kids on a cold day trying something new. A boy in a blue hat tries to light a campfire and only gets smoke. A girl in pink earmuffs builds a snow pile that is falling apart. A boy in an orange hat and glasses blows bubbles. A girl in purple skates and slips on the ice. A boy in a red hat holds a torn paper snowflake. A girl in earmuffs holds a mug of cocoa that is spilling over." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.mish4+\'" style="max-width:100%;width:700px;height:auto;border-radius:10px"></div>\'},'
+_m35=_m35.replace(_k,_k+_sf)
+s=s[:_i35]+_m35+s[_j35:]
+_i36=s.index('TP.register({id:"lp4-g4"');_j36=s.index('TP.register({id:',_i36+10);_m36=s[_i36:_j36]
+_k='std:["4-LS1-1"],n:3,dur:75,dir:"Look at the two living things.'
+assert _m36.count(_k)==1
+_pf2='std:["4-LS1-1"],n:3,dur:75,supfig:function(){return\'<div style="text-align:center;margin:10px 0"><img alt="A pine tree and a deer in a snowy forest with labels. The pine has thin needles instead of flat leaves, thick bark, and cones that hold its seeds. The deer has a thick winter coat, a four-part stomach inside its body, and long legs." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.pd4+\'" style="max-width:100%;width:700px;height:auto;border-radius:10px"></div>\'},dir:"Look at the two living things.'
+_m36=_m36.replace(_k,_pf2)
+s=s[:_i36]+_m36+s[_j36:]
+_i37=s.index('TP.register({id:"lp4-g4"');_j37=s.index('TP.register({id:',_i37+10);_m37=s[_i37:_j37]
+_k='std:["4-LS1-2"],n:3,dur:75,dir:"Read what happens, then answer.'
+assert _m37.count(_k)==1
+_df='std:["4-LS1-2"],n:3,dur:75,supfig:function(){return\'<div style="text-align:center;margin:10px 0"><img alt="Four pictures of a deer in the snow. 1: the deer pulls bark from a fallen branch. 2: a stone rolls down the slope and the deer lifts its head with its ears turned toward the slope. 3: the deer stands still and looks at the slope. 4: the deer walks calmly into the trees." src="data:image/webp;base64,\'+window.TP_IMG1.wp3.deer4+\'" style="max-width:100%;width:700px;height:auto;border-radius:10px"></div>\'},dir:"Read what happens, then answer.'
+_m37=_m37.replace(_k,_df)
+s=s[:_i37]+_m37+s[_j37:]
+must('if(hold)add("run","Ask the student to hold their paper up to the camera so you can see the working, not only the answer.");else if(paper&&!byTeacher)add("run","The student works on paper. Ask to see it when they finish.");','if(hold||(paper&&!byTeacher))add("run","The student works on paper.");')
+must('+"Have them hold the paper up so you can see the working, not only the answer."','+""')
+must(', and have the student hold one object on the ruler up to the camera so you can check that reading yourself','',10)
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
