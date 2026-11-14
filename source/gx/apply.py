@@ -601,6 +601,12 @@ s=s[:_i37]+_m37+s[_j37:]
 must('if(hold)add("run","Ask the student to hold their paper up to the camera so you can see the working, not only the answer.");else if(paper&&!byTeacher)add("run","The student works on paper. Ask to see it when they finish.");','if(hold||(paper&&!byTeacher))add("run","The student works on paper.");')
 must('+"Have them hold the paper up so you can see the working, not only the answer."','+""')
 must(', and have the student hold one object on the ruler up to the camera so you can check that reading yourself','',10)
+_i38=s.index('TP.register({id:"lp4-g4"');_j38=s.index('TP.register({id:',_i38+10);_m38=s[_i38:_j38]
+_o=' Layers stack with the newest on top.</p>'
+assert _m38.count(_o)==1
+_m38=_m38.replace(_o,'</p>')
+s=s[:_i38]+_m38+s[_j38:]
+must('animalbank2:{name:"Animal bank"','layers:{name:"How layers stack",ok:st=>st.title==="The Road Cut"&&String(S.grade)==="4",html:()=>`<div style="background:#fff;border:2px solid #7aa7d9;border-radius:14px;padding:10px 16px;font-size:1.15rem;line-height:1.5"><p><b>Rock layers stack up over time.</b></p><p>The oldest layer is on the bottom. The newest layer is on the top.</p></div>`},animalbank2:{name:"Animal bank"')
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
