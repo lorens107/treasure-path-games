@@ -1,0 +1,255 @@
+adaptation|a body part or behavior that helps a living thing survive where it lives
+organism|any living thing
+inherit|to get a trait from a parent
+inherited|passed down from parents to offspring
+variation|differences among living things of the same kind
+life cycle|the stages a living thing goes through, from birth to making its own young
+metamorphosis|a big change in body form during growth, like a caterpillar becoming a butterfly
+species|one kind of living thing
+population|all the living things of one kind in one place
+ecosystem|all the living and nonliving things in one place, and how they work together
+food chain|a line that shows who eats whom, and where energy goes
+food web|many food chains linked together
+producer|a living thing, like a plant, that makes its own food
+consumer|a living thing that eats other living things
+decomposer|a living thing that breaks down dead plants and animals
+herbivore|an animal that eats only plants
+carnivore|an animal that eats only other animals
+omnivore|an animal that eats both plants and animals
+extinct|no longer alive anywhere on Earth
+fossil|the print or remains of a living thing from long ago, kept in rock
+fossils|prints or remains of living things from long ago, kept in rock
+habitat|the place where a plant or animal lives
+camouflage|colors or shapes that help an animal blend in with its surroundings
+instinct|a way of acting an animal is born knowing
+behavior|the way a living thing acts
+migrate|to travel to another place for a season
+hibernate|to sleep through the winter
+group|a number of animals living or moving together
+herd|a group of animals that stay together
+reproduce|to make new living things of the same kind
+reproduction|making new living things of the same kind
+germinate|to start to grow from a seed
+stem|the part of a plant that holds it up and carries water
+roots|the plant parts that take in water and hold the plant in the ground
+leaf|the plant part that makes food from sunlight
+petal|a colorful part of a flower
+sense organ|a body part that takes in information, like the eyes or ears
+receptor|a body part that picks up a signal from outside
+brain|the body part that gets information and decides what to do
+nerve|a thin path that carries messages to and from the brain
+response|what an animal does after it gets information
+stimulus|something that makes a living thing react
+internal structure|a part that is inside a body
+external structure|a part that is on the outside of a body
+gills|the parts that let fish take in oxygen from water
+survival|staying alive
+traits|features like color, shape, or size
+weather|the conditions of the air at a certain time and place, such as temperature, wind, and rain
+climate|the usual weather in a place over many years
+region|a large area with something in common
+precipitation|water that falls from the sky, like rain, snow, or hail
+temperature|how hot or cold something is
+average|the number you get by adding the amounts and dividing by how many there are
+pattern|something that repeats in a way you can predict
+prediction|a guess about what will happen, based on evidence
+hazard|something that can cause harm
+flood|too much water covering land that is usually dry
+drought|a long time with very little rain
+wildfire|a fire that burns out of control in a forest or field
+earthquake|a shaking of the ground
+volcano|an opening in Earth where melted rock and ash can come out
+landscape|what the land in an area looks like
+erosion|the moving of rock and soil by wind, water, or ice
+weathering|the slow breaking of rock into smaller pieces
+deposit|to drop or leave sediment in a new place
+sediment|small pieces of rock, sand, and mud that settle
+layers|flat levels stacked one on top of another
+strata|layers of rock
+glacier|a huge, slow-moving mass of ice
+crack|a thin break in a surface
+expand|to take up more space
+ripple marks|wavy lines in rock left by moving water
+shale|soft rock made of squeezed mud
+sandstone|rock made of sand grains pressed together
+bedrock|solid rock under the soil
+soil|the loose top layer of ground where plants grow
+map|a drawing that shows where places and features are
+scale|a measurement used to show real size on a map or model
+elevation|how high a place is above sea level
+data|facts and numbers collected in a test or survey
+variable|something in a test that can change
+control|the part of a test that is left unchanged so you can compare
+fair test|a test where only one thing is changed at a time
+trial|one time through a test
+accurate|correct and close to the true amount
+evidence|facts or measurements that support a claim
+claim|a statement of what you think is true
+reasoning|explaining how your evidence supports your claim
+conclusion|what you decide after looking at the evidence
+argument|a claim backed up by evidence and reasoning
+criteria|the things a solution must do to be successful
+criterion|one thing a solution must do to be successful
+constraint|a limit on a design, like cost, time, or materials
+constraints|limits on a design, like cost, time, or materials
+prototype|a first version of a design used for testing
+solution|a way to solve a problem
+tradeoff|giving up one good thing to get another
+design|to plan and make something to solve a problem
+engineer|a person who designs solutions to problems
+failure point|the part of a design that breaks or fails first
+advantage|a good thing about something
+drawback|a bad thing about something
+resource|something people use, like water, wood, or oil
+renewable|can be replaced naturally in a short time
+nonrenewable|cannot be replaced quickly once it is used up
+fossil fuel|coal, oil, or gas made from living things long ago
+fuel|something burned to make heat or power
+natural resource|something from nature that people use
+conserve|to use less so it lasts longer
+pollution|harmful stuff in air, water, or land
+energy|the ability to make things move or change
+kinetic energy|the energy of motion
+potential energy|stored energy that can be used later
+transfer|to move from one place or thing to another
+transform|to change from one form into another
+convert|to change into a different form
+heat|energy that moves from warmer things to cooler things
+thermal|having to do with heat
+conductor|a material that lets heat or electricity move through it easily
+insulator|a material that slows down the movement of heat or electricity
+friction|a force that slows things down when they rub together
+collision|when two moving objects hit each other
+speed|how far something moves in a certain amount of time
+electric current|the flow of electricity through a path
+circuit|a complete path that electricity can flow around
+battery|a part that stores energy and pushes electric current
+generator|a machine that changes motion into electricity
+electricity|energy that flows through wires
+wire|a thin metal path that carries electricity
+magnet|an object that pulls on iron and steel
+magnetic|attracted by a magnet
+attract|to pull toward
+repel|to push away
+poles|the two ends of a magnet, where the pull is strongest
+balanced forces|forces that are equal and opposite, so the motion does not change
+unbalanced forces|forces that are not equal, so the motion changes
+force|a push or a pull
+gravity|the force that pulls things toward Earth
+motion|movement
+position|where something is
+distance|how far it is from one place to another
+direction|the way something is moving
+mass|the amount of matter in an object
+weight|how heavy something is
+object|a thing you can see or touch
+amplitude|how tall a wave is, measured from its middle line to its top
+wavelength|the distance from the top of one wave to the top of the next
+wave|a repeating pattern of motion that carries energy
+crest|the highest point of a wave
+trough|the lowest point of a wave
+frequency|how many waves pass a point in a certain time
+vibration|a quick back-and-forth movement
+medium|the material a wave moves through
+reflect|to bounce off a surface
+refract|to bend as light passes from one material into another
+absorb|to take in or soak up
+transmit|to let light or sound pass through
+mirror|a smooth surface that reflects light so you can see an image
+lens|a curved piece of glass or plastic that bends light
+shadow|a dark area where light is blocked
+signal|a sign or pattern used to send information
+code|a set of signals that stand for letters or words
+digital|using numbers, such as 0 and 1, to store information
+information|facts or messages
+pattern of waves|a repeating wave shape
+sphere|a round, ball-shaped object
+hydrosphere|all the water on Earth
+geosphere|the solid part of Earth: rock, soil, and mountains
+atmosphere|the layer of air around Earth
+biosphere|all the living things on Earth
+groundwater|water that soaks into the ground and fills spaces in soil and rock
+reservoir|a place where water is stored
+evaporation|when liquid water changes into a gas
+condensation|when a gas turns into liquid
+water cycle|how water moves from the ground to the air and back again
+interact|to affect each other
+system|a group of parts that work together
+component|one part of a system
+model|a drawing or object that shows how something works
+particle|a tiny piece of matter
+particles|tiny pieces of matter
+matter|anything that has mass and takes up space
+substance|one kind of matter
+property|something you can tell about a material, like color, hardness, or how it dissolves
+properties|things you can tell about a material, like color, hardness, or how it dissolves
+solid|matter with a definite shape
+liquid|matter that flows and takes the shape of its container
+gas|matter that spreads out to fill its container
+mixture|two or more substances combined that can be separated again
+solution|a mixture where one substance is spread evenly through a liquid
+dissolve|to spread evenly through a liquid until it cannot be seen
+conservation of matter|matter is not made or destroyed, only changed
+reaction|a change that makes new substances
+chemical change|a change that makes a new substance
+physical change|a change in shape, size, or state, but not the kind of substance
+reversible|can be changed back
+irreversible|cannot be changed back
+mass of|the amount of matter in
+hardness|how well a material resists being scratched
+conduct|to let heat or electricity pass through
+filter|to separate solids from liquids with a screen
+evaporate|to change from liquid to gas
+carbon dioxide|a gas in the air that plants take in
+oxygen|a gas in the air that living things need to breathe
+glucose|a sugar that plants make for food
+photosynthesis|how plants use sunlight, water, and carbon dioxide to make food
+nutrient|a part of food or soil that helps living things grow
+bacteria|tiny living things too small to see without a microscope
+compost|rotted plant material that adds nutrients to soil
+brightness|how bright a light looks
+distance from|how far away from
+orbit|the curved path of one object around another
+rotate|to spin around a center
+rotation|spinning around a center
+revolve|to move in a circle around something
+tilt|to lean to one side
+axis|the imaginary line that Earth spins around
+constellation|a group of stars that make a pattern in the night sky
+planet|a large round object that orbits a star
+shadow length|how long a shadow is
+daylength|the number of hours of daylight
+impact|the effect something has on something else
+prevent|to stop something from happening
+survey|collecting information by measuring or asking in many places
+unit|a standard amount used to measure, like meters or grams
+estimate|to make a careful guess about an amount
+turbine|a machine with blades that spin to make power
+solar panel|a flat device that turns sunlight into electricity
+engine|a machine that burns fuel to make motion
+exhaust|the gas that comes out of an engine
+diesel|a fuel used in some engines
+sensor|a tool that detects something and sends the information
+intensity|how strong something is
+balanced|equal on both sides, so nothing changes
+unbalanced|not equal, so something changes
+delta|land built up from sediment where a river meets the sea
+valley|low land between hills or mountains
+ridge|a long, narrow top of a hill or mountain
+slope|ground that slants up or down
+landslide|rock and soil sliding down a slope
+gravel|small pieces of rock
+ash|tiny bits of rock and glass thrown out by a volcano
+shale|soft rock made of squeezed mud
+mudstone|soft rock made of hardened mud
+limestone|rock often made from shells and sea animals
+shell|the hard outside covering of some animals
+organ|a body part that does a job
+structure|a part of an organism, or something built, that does a job
+function|the job something does
+protect|to keep safe from harm
+gather|to collect
+record|to write down
+volume|how loud a sound is
+tide|the daily rise and fall of the ocean
+pump|a machine that moves liquid

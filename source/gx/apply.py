@@ -617,6 +617,22 @@ for _o,_n in (('<tr><td>1 west foot</td>','<tr><td>1</td>'),('<tr><td>4 crest</t
     assert _m40.count(_o)==1,_o
     _m40=_m40.replace(_o,_n)
 s=s[:_i40]+_m40+s[_j40:]
+def _gl(fn):
+    d={}
+    for _ln in open('../sci/'+fn,encoding='utf8'):
+        _ln=_ln.rstrip('\n')
+        if '|' in _ln:
+            _a,_b=_ln.split('|',1);d[_a.strip()]=_b.strip()
+    return d
+_GL={'e':_gl('gloss_e.txt'),'u':_gl('gloss_u.txt'),'m':_gl('gloss_m.txt')}
+import glob as _glob
+_SCIS={}
+for _f in sorted(_glob.glob('../sci/st/*.json')):
+    _SCIS.update(_json.load(open(_f)))
+_scijs=open('../sci/sci.js',encoding='utf8').read().replace('__GLOSS__',_json.dumps(_GL)).replace('__SCIS__',_json.dumps(_SCIS))
+must('const TP_BANK2=',_scijs+'const TP_BANK2=')
+_scih='<style>.sv-b{background:#fff;border:2px solid #7aa7d9;border-radius:14px;padding:8px 16px;margin:8px 0;font-size:1.1rem;line-height:1.5}.sv-b dt{font-weight:700;color:#3a5a93;margin-top:6px}.sv-b dd{margin:0 0 4px 0}.sv-b li{margin:6px 0}.sv-b h3{margin:6px 0;color:#3a5a93}</style>'
+must('layers:{name:"How layers stack"','scivocab:{name:"Word help",ok:st=>TP_SCI_IS(st)&&TP_SCIV(st).length>0,html:st=>`'+_scih+'<div class="sv-b"><dl>${TP_SCIV(st).map(x=>`<dt>${x[0]}</dt><dd>${x[1]}</dd>`).join("")}</dl></div>`},scistart:{name:"Answer starters",ok:st=>TP_SCI_IS(st)&&!!TP_SCIS[TP_SCI_KEY(st)],html:st=>{const a=TP_SCIS[TP_SCI_KEY(st)]||[];return`'+_scih+'${a.map((fr,i)=>`<div class="sv-b">${a.length>1?`<h3>Part ${i+1}</h3>`:""}<ol>${fr.map(f=>`<li>${f}</li>`).join("")}</ol></div>`).join("")}`}},layers:{name:"How layers stack"')
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")

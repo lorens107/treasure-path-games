@@ -1,0 +1,135 @@
+weather|what the air outside is like, such as sunny, rainy, windy, or snowy
+forecast|a guess about what the weather will be
+temperature|how hot or cold something is
+shade|a cooler, darker spot where something blocks the sun
+shelter|a place that keeps you safe from weather and danger
+sunlight|light that comes from the sun
+heat|warmth that moves from a warmer thing to a cooler thing
+push|to move something away from you
+pull|to move something toward you
+force|a push or a pull
+motion|movement
+direction|the way something is going
+speed|how fast something moves
+ramp|a flat surface that slants up or down
+collide|to crash into something
+collision|a crash between two things
+strength|how strong a push or pull is
+needs|things a living thing must have to stay alive
+environment|everything around a living thing
+habitat|the place where a plant or animal lives
+resource|something people use, like water, wood, or soil
+pollution|dirty or harmful things in the air, water, or land
+reduce|to make less
+recycle|to use something again instead of throwing it away
+natural|not made by people
+soil|the loose dirt that plants grow in
+pattern|something that repeats in the same way
+observe|to look closely and notice details
+observation|something you notice by looking, listening, or touching
+predict|to say what you think will happen
+prediction|a guess about what will happen
+compare|to tell how things are alike and different
+measure|to find out how long, heavy, hot, or big something is
+evidence|facts you saw or measured that show your idea is true
+design|to plan how to build something
+solution|a way to fix a problem
+problem|something that needs to be fixed
+model|a drawing or object that shows how something works
+sketch|a quick drawing
+investigate|to find out by testing or looking closely
+data|numbers or facts you collect
+claim|what you think is true
+reason|why you think your claim is true
+cause|the thing that makes something happen
+effect|what happens because of something
+structure|a part of a plant or animal, or something built
+trait|a feature, like color, shape, or size
+parent|the adult that has babies
+offspring|the babies of a plant or animal
+adult|a fully grown animal or plant
+young|a baby animal or a small, new plant
+survive|to stay alive
+sense|a way your body takes in information, like sight or hearing
+signal|a sign sent to give a message
+communicate|to share a message
+message|information sent from one place or person to another
+vibrate|to shake back and forth very fast
+vibration|a very fast shaking back and forth
+sound|something you hear, made when things vibrate
+volume|how loud or quiet a sound is
+reflect|to bounce back off a surface
+shadow|a dark shape made when something blocks light
+transparent|light passes through it, so you can see clearly through it
+translucent|some light passes through, but you cannot see clearly
+opaque|no light passes through it
+light|brightness that lets you see
+source|the place something comes from
+daylight|the light and time of day when the sun is up
+season|one of the four parts of the year: winter, spring, summer, fall
+star|a huge ball of hot gas far away in space that gives off light
+sun|the star that gives Earth light and heat
+moon|the large round object that goes around Earth
+sunrise|when the sun first shows in the morning
+sunset|when the sun goes out of sight in the evening
+orbit|to travel in a path around something
+material|what something is made of
+property|something you can tell about an object, like color, size, or how it feels
+texture|how something feels, like rough or smooth
+flexible|bends easily
+rigid|stiff and does not bend
+absorb|to soak up
+waterproof|does not let water through
+solid|matter that keeps its own shape
+liquid|matter that pours and takes the shape of its container
+gas|matter that spreads out, like air
+matter|anything that takes up space
+melt|to change from solid to liquid when heated
+freeze|to change from liquid to solid when cooled
+reversible|can be changed back
+irreversible|cannot be changed back
+dissolve|to mix into a liquid so you can no longer see it
+mixture|two or more things put together
+pollen|the powder that flowers make to help seeds form
+pollinate|to carry pollen from one flower to another
+pollinator|an animal, like a bee, that carries pollen between flowers
+seed|the part of a plant that can grow into a new plant
+seedling|a young plant that just started growing
+disperse|to spread out in different directions
+nutrients|the parts of food and soil that help living things grow
+landform|a shape of land, like a hill or a valley
+erosion|moving of rock and soil by wind or water
+weathering|slow breaking of rock into smaller pieces
+water|the liquid that falls as rain and fills lakes and oceans
+ocean|a very large body of salt water
+lake|a body of water with land all around it
+river|a large stream of water that flows across land
+map|a drawing that shows where places are
+diversity|many different kinds of living things
+tool|something people use to do a job
+predator|an animal that hunts other animals for food
+prey|an animal that is hunted for food
+food|what living things eat to get energy
+energy|what makes things move or change
+device|a tool or machine made to do a job
+log|a written record of what you see, day after day
+chart|facts shown in rows and columns or in a picture
+copy|to make something like another thing
+bounce|to hit a surface and go back the other way
+grown|fully grown
+blur|a shape that looks fuzzy and unclear
+tracks|marks left on the ground by feet or wheels
+nest|a home birds make for their eggs and young
+burrow|a hole in the ground an animal makes to live in
+camouflage|colors or shapes that help an animal blend in with its surroundings
+shell|the hard outside covering of some animals
+fur|the soft hair that covers some animals
+feathers|the light coverings that grow on birds
+beak|the hard mouth part of a bird
+claws|the sharp curved nails on some animals' feet
+webbed|having skin between the toes
+thorns|sharp points on a plant
+spines|stiff, sharp points on a plant or animal
+trunk|the main stem of a tree
+sprout|to start to grow
+shake|to move back and forth quickly

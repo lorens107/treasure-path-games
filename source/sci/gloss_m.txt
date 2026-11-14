@@ -1,0 +1,161 @@
+atom|the smallest unit of an element that keeps its properties
+molecule|two or more atoms joined together
+element|a pure substance made of only one kind of atom
+compound|a substance made of two or more elements joined together
+pure substance|matter made of only one kind of particle
+chemical reaction|a process where substances change into new substances
+reactant|a starting substance in a chemical reaction
+reactants|the starting substances in a chemical reaction
+product|a new substance made in a chemical reaction
+products|the new substances made in a chemical reaction
+conservation of mass|in a reaction, the total mass stays the same
+density|how much mass is in a certain amount of space
+solubility|how well a substance dissolves in a liquid
+thermal energy|the total energy of the moving particles in a substance
+temperature|a measure of the average motion of the particles in a substance
+kinetic energy|the energy an object has because it is moving
+potential energy|stored energy because of position or condition
+energy transfer|energy moving from one object or place to another
+energy transformation|energy changing from one form to another
+conduction|heat moving through touching matter
+convection|heat moving as warmer fluid rises and cooler fluid sinks
+radiation|energy that travels as waves, like light from the sun
+conductor|a material that lets heat or electricity flow easily
+insulator|a material that slows heat or electricity
+system|a group of parts that work together
+boundary|the edge of a system or region
+variable|a factor that can change in an investigation
+independent variable|the one factor you change on purpose
+dependent variable|the factor you measure to see the effect
+controlled variable|a factor you keep the same
+trial|one run of an investigation
+sample|a small part used to learn about the whole
+data|measurements and facts collected in an investigation
+evidence|data and observations that support a claim
+claim|a statement you think is true
+reasoning|the link between your evidence and your claim
+model|a drawing, object, or idea that represents how something works
+criteria|the goals a design must meet
+criterion|one goal a design must meet
+constraint|a limit on a design, like cost, time, size, or materials
+constraints|limits on a design, like cost, time, size, or materials
+optimize|to improve a design as much as possible
+prototype|a first test version of a design
+iterate|to test, improve, and test again
+trade-off|giving up some of one thing to gain another
+tradeoff|giving up some of one thing to gain another
+decision matrix|a table that scores design choices against criteria
+engineer|a person who designs solutions to problems
+renewable|can be replaced naturally in a short time
+nonrenewable|cannot be replaced in a human lifetime once used up
+resource|a material or energy source that people use
+fossil fuel|coal, oil, or gas formed from ancient living things
+sustainable|able to continue without using up resources
+natural hazard|a natural event that can harm people or property
+hazard|something that can cause harm
+mitigate|to make something less harmful
+forecast|a prediction of future conditions, based on data
+monitor|to check something again and again over time
+aquifer|an underground layer of rock or sand that holds water
+watershed|all the land that drains into one river or lake
+sediment|bits of rock, sand, and mud moved and dropped by water, wind, or ice
+deposition|the dropping of sediment in a new place
+erosion|the moving of weathered rock and soil by water, wind, or ice
+weathering|the breaking down of rock at Earth's surface
+rock cycle|the ways rock changes between igneous, sedimentary, and metamorphic
+igneous|rock formed from cooled melted rock
+sedimentary|rock formed from pressed layers of sediment
+metamorphic|rock changed by heat and pressure
+fossil|the remains or print of an organism from long ago, preserved in rock
+strata|layers of rock
+stratigraphy|the study of rock layers
+plate|a huge slab of Earth's outer rock
+plate tectonics|the slow movement of Earth's plates
+crust|Earth's thin outer layer of rock
+mantle|the thick layer of hot rock under the crust
+core|Earth's center
+trench|a long, deep valley in the ocean floor
+ridge|a long line of mountains or raised ground
+volcano|an opening in Earth's surface where hot rock, ash, and gas can erupt
+earthquake|shaking of the ground when rock moves along a fault
+magma|melted rock under the ground
+seafloor spreading|new ocean floor forming as plates move apart
+continent|one of the seven large land areas on Earth
+climate|the usual weather in a region over many years
+weather|the conditions of the atmosphere at a certain time and place
+atmosphere|the layer of gases around Earth
+air mass|a large body of air with about the same temperature and moisture
+front|the edge where two different air masses meet
+humidity|the amount of water vapor in the air
+pressure|how hard something pushes on a surface
+water cycle|how water moves between oceans, air, and land
+evaporation|when liquid water turns into water vapor
+condensation|when water vapor turns into liquid water
+precipitation|water that falls from clouds as rain, snow, sleet, or hail
+runoff|water that flows over land
+transpiration|water vapor released from plant leaves
+greenhouse effect|heat held near Earth by gases in the air
+greenhouse gas|a gas, like carbon dioxide, that traps heat
+carbon dioxide|a gas in the air made when things burn and living things breathe out
+carbon|an element found in all living things
+oxygen|a gas in the air that most living things need
+hydrogen|the lightest element
+glacier|a large, slow-moving mass of ice
+solar system|the sun and everything that orbits it
+galaxy|a huge group of stars, gas, and dust held together by gravity
+gravity|a force that pulls objects with mass toward each other
+orbit|the curved path of one object around another
+eclipse|when one object moves into the shadow of another in space
+phases|the changing shapes of the moon we see
+tilt|the angle Earth's axis leans
+axis|the line Earth spins around
+season|a part of the year with a pattern of weather, caused by Earth's tilt
+light-year|the distance light travels in one year
+scale|the size relationship between a model and the real thing
+force|a push or pull
+net force|all the forces on an object added together
+balanced|equal and opposite, so there is no change in motion
+unbalanced|not equal, so motion changes
+acceleration|a change in speed or direction
+velocity|speed in a certain direction
+speed|distance traveled in a certain time
+momentum|how hard it is to stop a moving object, based on mass and speed
+mass|the amount of matter in an object
+weight|the pull of gravity on an object
+inertia|the tendency of an object to keep doing what it is doing
+friction|a force that resists sliding between two surfaces
+newton|the unit used to measure force
+magnetic field|the space around a magnet where it pushes or pulls
+electric field|the space around a charge where it pushes or pulls
+electromagnet|a magnet made with electric current in a coil of wire
+electric current|the flow of electric charge
+charge|a property of matter that causes electric force
+circuit|a complete path for electric current
+wave|a repeating disturbance that carries energy
+amplitude|the height of a wave from its rest position
+wavelength|the distance from one wave crest to the next
+frequency|how many waves pass a point in one second
+crest|the highest point of a wave
+trough|the lowest point of a wave
+medium|the material a wave travels through
+reflect|to bounce off a surface
+refract|to bend when passing from one material into another
+absorb|to take in energy
+transmit|to pass through
+signal|a pattern of waves used to carry information
+digital|using numbers to store information
+analog|using a continuous wave to store information
+pulse|a short burst of a wave
+sound|a wave made by vibrations that travels through matter
+vibration|a quick back-and-forth movement
+impact|the effect something has on something else
+unit|a standard amount used to measure, like meters or grams
+estimate|to make a careful guess about an amount
+sensor|a tool that detects something and sends the information
+turbine|a machine with blades that spin to make power
+generator|a machine that changes motion into electricity
+solar|having to do with the sun
+renewable energy|energy from sources that are replaced naturally, like wind and sun
+intensity|how strong something is
+organism|any living thing
+ecosystem|all the living and nonliving things in one place
