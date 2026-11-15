@@ -643,6 +643,7 @@ _o='<div class="figure">${F.icon("mitten",96)}${F.icon("sun",96)}</div>`,qs:["Dr
 assert _m42.count(_o)==1
 _m42=_m42.replace(_o,'<div style="text-align:center;margin:10px 0"><img alt="Two pictures. Left: a bright sunny snowy village with a smiling sun. Right: the inside of a dark shed with the door shut, a thin line of light around the door, and a red mitten on the floor." src="data:image/webp;base64,${window.TP_IMG1.wp3.snow4}" style="max-width:100%;width:900px;height:auto;border-radius:10px"></div>`,qs:["Draw or tell the path of the light when someone outside sees the snow.')
 s=s[:_i42]+_m42+s[_j42:]
+must(':`<ul>${lis(rows[0])}</ul>${ans(rows[0])}`;return`<div class="teach">',':(()=>{const _l=lis(rows[0]);return(_l?`<ul>${_l}</ul>`:"")+ans(rows[0])})();return`<div class="teach">')
 must('function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">','function hayA(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.props;if(!T||!T.length)return hay(x,y,s);const k=T[Math.abs(Math.round(x*5+y*0.37))%T.length],w=Math.min(62,40*k[1]/k[2]),h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+17*s-h*s}" width="${w*s}" height="${h*s}"/>`}function fence(x,y,s){return`<g transform="translate(${x},${y}) scale(${s||1})" opacity=".95">')
 must('function tree(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"','function tree(x,y,s){s=s||1;const T=window.TP_IMG1&&window.TP_IMG1.trees;if(T&&T.length){const k=T[Math.abs(Math.round(x*7+y*0.31))%T.length],w=76,h=w*k[2]/k[1];return`<image href="data:image/webp;base64,${k[0]}" x="${x-w*s/2}" y="${y+26*s-h*s}" width="${w*s}" height="${h*s}"/>`}return treeOld(x,y,s)}function treeOld(x,y,s){s=s||1;return`<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="28"')
 must("function basket(n,full){return`<image href='data:image/webp;base64,","function basket(n,full){if(!full)return window.TP_BASKET0;return`<image href='data:image/webp;base64,")
@@ -670,6 +671,27 @@ must('return svg(420,280,b,"A closed treasure chest with question marks")','retu
 must('function teachFor(p){if(p.teach)return p.teach;','function teachFor(p){var t0=teachFor0(p);return window.GXteach?window.GXteach(p,t0,S.grade,call):t0}function teachFor0(p){if(p.teach)return p.teach;')
 must('else if(q)add("run",young?"Read the directions aloud, then each question, one at a time.":','else if(q)add("run",young?(window.GXlookBack&&window.GXlookBack(p,S.grade,call)?"Read the directions aloud. The story is on the screen under Look back. Then read each question, one at a time. If a question needs the story, read the sentence it asks about. If the student struggled to read the story in the last stop, read the whole story aloud first.":window.GXreadsText&&window.GXreadsText(p,S.grade,call)?"Read the directions aloud. Then read the text on the screen aloud, once, and again if the student asks. Then read each question, one at a time.":"Read the directions aloud, then each question, one at a time."):')
 must('else add("run",young?"Read the directions aloud.":','else add("run",young?(window.GXreadsText&&window.GXreadsText(p,S.grade,call)?"Read the directions aloud. Then read the text on the screen aloud, once, and again if the student asks.":"Read the directions aloud."):')
+_td=[
+('else if(cards)add("run",`Show one ${unit} at a time with the Next and Back buttons. The arrow keys work too.`);','else if(cards){}'),
+('add("run",q?`Then ask the ${q===1?"question":q+" questions"} on the screen${q>1?", one at a time":""}.`:`Then ask the questions listed ${here}.`)',''),
+(':"Read the directions aloud, then each question, one at a time.")',':"")'),
+(':"The student reads the directions and questions on the screen. If you read any aloud, mark Questions read aloud under Supports.");else add("run",young?(',':"");else add("run",young?('),
+(':"Read the directions aloud."):"The student reads the directions on the screen.");',':""):"");'),
+('if(/look at|study the/.test(dl2)&&!cards&&!fluency)add("run","Give the student a moment to look before the first question.");',''),
+('else if((p.render||p.bind)&&!cards&&!fluency)add("run","This part runs on the screen. The student taps or types, and nothing needs to be dragged. Watch how they work, not only where they end up.");',''),
+('if(hold||(paper&&!byTeacher))add("run","The student works on paper.");',''),
+('if(timed)add("run",`Keep time. The directions give the student about ${timed[1]} minute${/^(1|one)$/.test(timed[1])?"":"s"}.`);',''),
+('if(!cards&&!fluency&&!listen&&!paper&&/out loud|say |tell |talk|count/.test(dl2))add("run","The student answers out loud.");',''),
+('else add("score",where==="screen"?`Tick each check below as you see it, then type the number met in the box for this part (out of ${n}).`:`Check off each one ${here} as you see it. Write the number met in the box for this part (out of ${n}).`);','else{}'),
+('if(key.some(k=>/partial:/i.test(String(k))))add("score","Where the key lists a Partial answer, leave it out of the right count and write what the student did in Notes.");',''),
+('add("extra",`This part usually takes ${range(p.dur||st.dur||60)}.`);return out}','add("extra",`This part usually takes ${range(p.dur||st.dur||60)}.`);return out.filter(x=>x.t)}'),
+('to the number you actually asked.','to the number you actually asked. Where a key lists a Partial answer, leave it out of the right count and write what the student did in Notes.'),
+('${body}<p class="small">Then fill in the counts below.</p></div>','${body}</div>'),
+('if(w===null)out.push("Word pictures stay off on this part because it checks reading words or what words mean.");else if(w.length)','if(w&&w.length)'),
+('steps.push(teachPicLine(st,p));','{const _pl=teachPicLine(st,p);if(!/nothing on this part has a picture/.test(_pl))steps.push(_pl)}'),
+]
+for _a,_b in _td:
+    must(_a,_b)
 import re
 CS=CS='function candleShape(x,y,s,c){const k=s/26;return`<g transform="translate(${n1(x)} ${n1(y+2*k)}) scale(${n1(k)})">${candleArt(c)}</g>`}'
 for mid in ['lp10-g1','lp10-g2','lp10-gk']:
