@@ -427,19 +427,42 @@ def position_fig(top, bl, bm, br):
     return svg(270, 160, body, "Four shapes")
 
 
+def overlap_fig(back, front):
+    body = ""
+    kb, cb = back
+    kf, cf = front
+    body += glyph(kb, 90, 50, cb, 2.0)
+    body += glyph(kf, 120, 62, cf, 2.0)
+    return svg(220, 120, body, "Two shapes, one in front of the other")
+
+
 def b_positions(lp, r):
-    ks = SHP[:] + ["circle"]
     shapes = [("circle", COLS["red"]), ("square", COLS["blue"]), ("triangle", COLS["green"]), ("circle", COLS["yellow"])]
     r.shuffle(shapes)
     names = {COLS["red"]: "red", COLS["blue"]: "blue", COLS["green"]: "green", COLS["yellow"]: "yellow"}
-    lab = lambda s: "%s %s" % (names[s[1]], s[0])
+    lab = lambda s_: "%s %s" % (names[s_[1]], s_[0])
     top, bl, bm, br = shapes
     fig = position_fig(top, bl, bm, br)
-    qs = ["Which shape is above the %s?" % lab(bm),
-          "Which shape is next to the %s on its left?" % lab(bm) if False else "Which shape is below the %s?" % lab(top),
-          "Which shape is between the %s and the %s?" % (lab(bl), lab(br))]
-    key = ["The %s." % lab(top), "The %s." % lab(bm), "The %s." % lab(bm)]
-    return dict(qs=qs, key=key, dir="Look at the four shapes. Your teacher asks where the shapes are. Use position words like above, below, next to, and between.", dur=130, html=row([("", fig)]))
+    k = lp % 3
+    if k == 0:
+        q1, k1 = "Which shape is above the %s?" % lab(bm), "The %s." % lab(top)
+    elif k == 1:
+        q1, k1 = "Which shape is below the %s?" % lab(top), "The %s." % lab(bm)
+    else:
+        q1, k1 = "Which shape is between the %s and the %s?" % (lab(bl), lab(br)), "The %s." % lab(bm)
+    if lp % 2:
+        q2, k2 = "Which shape is next to the %s?" % lab(br), "The %s." % lab(bm)
+    else:
+        q2, k2 = "Which shape is next to the %s?" % lab(bl), "The %s." % lab(bm)
+    pair = r.sample([("circle", COLS["red"]), ("square", COLS["blue"]), ("triangle", COLS["green"]), ("circle", COLS["yellow"])], 2)
+    back, front = pair
+    fig2 = overlap_fig(back, front)
+    if lp % 2:
+        q3, k3 = "Look at the two shapes in picture B. Which shape is in front?", "The %s." % lab(front)
+    else:
+        q3, k3 = "Look at the two shapes in picture B. Which shape is behind?", "The %s." % lab(back)
+    html = row([("A", fig), ("B", fig2)])
+    return dict(qs=[q1, q2, q3], key=[k1, k2, k3], dir="Look at pictures A and B. Your teacher asks where the shapes are. Use position words like above, below, between, next to, in front of, and behind. Questions 1 and 2 use picture A. Question 3 uses picture B.", dur=140, html=html)
 
 
 # ================================================================== TK
