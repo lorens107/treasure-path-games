@@ -8,16 +8,22 @@ window.GXv=function(a,lp){return a[(lp-1)%a.length]};
 window.GXqa=function(rows){return{qs:rows.map(function(r){return r[0]}),key:rows.map(function(r){return r[1]})}};
 window.GXp=function(o){var p={gx:1,title:o.title,std:[o.std],dur:o.dur||90,dir:o.dir,desc:o.desc};
  if(o.rows){var q=GXqa(o.rows);p.qs=q.qs;p.key=q.key}else if(o.key)p.key=o.key;
- if(o.n)p.n=o.n;if(o.label)p.label=o.label;if(o.html)p.html=typeof o.html==="function"?o.html:function(){return o.html};
+ if(o.strand)p.strand=o.strand;if(o.n)p.n=o.n;if(o.label)p.label=o.label;if(o.html)p.html=typeof o.html==="function"?o.html:function(){return o.html};
  if(o.fig)p.fig=o.fig;if(o.picSup)p.picSup=o.picSup;if(o.qfig)p.qfig=o.qfig;if(o.qsup)p.qsup=o.qsup;if(o.mats)p.mats=o.mats;if(o.kind)p.kind=o.kind;if(o.words)p.words=o.words;if(o.wordPics)p.wordPics=o.wordPics;if(o.read)p.read=o.read;if(o.supfig)p.supfig=o.supfig;return p};
 var uid=9100;
 window.GX=function(E,lp,grade,stops){
- (D[String(grade)]||[]).forEach(function(g){
+ (D[String(grade)]||[]).slice().sort(function(x,y){return (x.op==='strands')-(y.op==='strands')}).forEach(function(g){
   if(g.lps&&g.lps.indexOf(lp)<0)return;
   var host=null,hp=null,bi=-1;
   for(var i=0;i<stops.length;i++){var ps=stops[i].parts||[];for(var j=0;j<ps.length;j++){if((ps[j].std||[]).indexOf(g.std)>=0&&(!g.kinds||g.kinds.indexOf(ps[j].kind)>=0)){var hi=i;if(ps[j].gxHome!=null){for(var k=0;k<stops.length;k++)if(stops[k].id===ps[j].gxHome){hi=k;break}}if(bi<0||hi<bi){bi=hi;hp=ps[j]}}}}
   if(bi>=0)host=stops[bi];
   try{
+   if(g.op==='strands'){/* swaps the standard's old whole-standard part(s) for one part per strand, in the same place in the same stop */
+    if(!host)return;var arr=g.make(lp,E,hp);if(!arr||!arr.length)return;
+    var old=[],at=-1;host.parts.forEach(function(p,i){if((p.std||[]).length===1&&p.std[0]===g.std){old.push(p);if(at<0)at=i}});
+    if(old[0]&&old[0].html&&!arr[0].html)arr[0].html=old[0].html;
+    host.parts=host.parts.filter(function(p){return old.indexOf(p)<0});
+    host.parts.splice(at<0?host.parts.length:at,0,...arr);return}
    if(g.op==='keyAdd'){if(!hp)return;var ks=(hp.key||[]).join(' ');g.items.forEach(function(it){if(it.test.test(ks))return;hp.key=(hp.key||[]).concat([it.line]);ks+=' '+it.line;if(hp.n!=null)hp.n+=1});return}
    var p=g.make(lp,E,hp);if(!p)return;if(!p.std)p.std=[g.std];
    if(host)host.parts.push(p);else stops.push({id:++uid,title:p.title,short:p.title,parts:[p]});
