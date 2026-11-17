@@ -916,5 +916,9 @@ s=s[:_i7]+_m7+s[_j7:]
 _np=s.count('\u00a3'); s=s.replace('\u00a3','$'); s=s.replace('&pound;','$'); print('pound signs to dollars',_np)
 s=s.replace('The eight draws, in pounds','The eight draws, in dollars').replace('costs k pounds','costs k dollars')
 _n9=len(_dec.findall(s));s=_dec.sub(_sub9,s);print('removed math decorations (final)',_n9-len(_dec.findall(s)))
+_t1='<span>${esc(x.desc||"")}</span></label>`).join("")+`</div>`}'
+must(_t1,'<span>${esc(x.desc||"")}</span>${((window.TP_TIME_PARTS||{})[c]||{})[x.id]?`<i class="timenote" style="display:block;margin-top:2px;color:#9a4a00;font-weight:600">Takes time: ${esc(window.TP_TIME_PARTS[c][x.id])}</i>`:""}</label>`).join("")+`</div>`}')
+must('${(window.TP_TIME||{})[c]?` <i class="timenote"','${(window.TP_TIME||{})[c]&&!(window.TP_TIME_PARTS||{})[c]?` <i class="timenote"')
+must('${(window.TP_TIME||{})[c]?`<br><span class="small" style="color:#9a4a00;font-weight:600">Takes time: ${esc(window.TP_TIME[c])}</span>`:""}','${window.TPtimeFor(c,(S.strands||{})[c])?`<br><span class="small" style="color:#9a4a00;font-weight:600">Takes time: ${esc(window.TPtimeFor(c,(S.strands||{})[c]))}</span>`:""}')
 open(B+'work/patched.html','w').write(s)
 print('patched',len(s),'gx bytes',len(js))

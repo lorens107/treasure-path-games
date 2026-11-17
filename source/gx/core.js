@@ -75,7 +75,9 @@ window.GXteach=function(p,t,grade,call){
  return "Read the words on the screen aloud to the student, once, and again if they ask. "+t};
 })();
 
-window.TP_TIME={"RF.1.4":"Successive readings may need to be completed to fully measure this standard.","RF.2.4":"Successive readings may need to be completed to fully measure this standard.","RF.3.4":"Successive readings may need to be completed to fully measure this standard.","RF.4.4":"Successive readings may need to be completed to fully measure this standard.","RF.5.4":"Successive readings may need to be completed to fully measure this standard.","SL.5.4":"Students may need additional time to memorize or prepare a presentation to fully assess this standard."};
+window.TP_TIME={"RF.2.4":"Successive readings may need to be completed to fully measure this standard.","RF.3.4":"Successive readings may need to be completed to fully measure this standard.","RF.4.4":"Successive readings may need to be completed to fully measure this standard.","RF.5.4":"Successive readings may need to be completed to fully measure this standard.","SL.5.4":"Students may need additional time to memorize or prepare a presentation to fully assess this standard."};
+window.TP_TIME_PARTS={"RF.1.4":{"flu":"Successive readings may need to be completed to fully measure this part."}};
+window.TPtimeFor=function(c,sel){var p=(window.TP_TIME_PARTS||{})[c];if(!p)return (window.TP_TIME||{})[c]||"";for(var k in p){if(!sel||sel.indexOf(k)>=0)return p[k]}return""};
 
 window.TP_BT={flat:"@@BTF@@",rod:"@@BTR@@",cube:"@@BTC@@"};
 
