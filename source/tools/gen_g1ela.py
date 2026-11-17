@@ -403,7 +403,8 @@ def b_rf13_iphon(lp, r):
     sa, sb, sc = sets5(DIG, lp, 0), sets5(REG, lp, 1), sets5(LONGV, lp, 2)
     qs = ["Read the words in set %s out loud." % L for L in "ABC"]
     key = ["All 5 words read correctly: %s." % ", ".join(s) for s in (sa, sb, sc)]
-    return dict(qs=qs, key=key, dir="Look at the three sets of words. Read the words in each set out loud when your teacher asks.", dur=140, html=pills_html([("A", sa), ("B", sb), ("C", sc)]))
+    mk = [dict(l=L, w=list(x), allow=0) for L, x in zip("ABC", (sa, sb, sc))]
+    return dict(qs=qs, key=key, dir="Look at the three sets of words. Read the words in each set out loud when your teacher asks.", dur=140, html=pills_html([("A", sa), ("B", sb), ("C", sc)]), mk=mk, auto=True)
 
 
 TXT_PHON = ["We rode the bike to the lake.", "Beth ate fish on the beach.", "The boat floats on the pond.", "I like to play in the rain.", "Chip has a big shell.", "Dad made a cake for me.", "The green tree has a nest.", "We hope it will snow.", "The coat is on the chair.", "The mail came in the rain.", "Seth got a thin white rope.", "The ship will sail at six."]
@@ -414,21 +415,24 @@ def b_rf13_tphon(lp, r):
     it = rot(TXT_PHON, lp)
     qs = ["Read sentence %s out loud." % L for L in "ABC"]
     key = ["Reads every word correctly: %s" % s for s in it]
-    return dict(qs=qs, key=key, dir="Look at the three sentences. Read each one out loud when your teacher asks.", dur=140, html=lines_html(list(zip("ABC", it))))
+    mk = [dict(l=L, t=x, allow=0) for L, x in zip("ABC", it)]
+    return dict(qs=qs, key=key, dir="Look at the three sentences. Read each one out loud when your teacher asks.", dur=140, html=lines_html(list(zip("ABC", it))), mk=mk, auto=True)
 
 
 def b_rf13_iword(lp, r):
     sa, sb, sc = sets5(TWO, lp, 0), sets5(INFL, lp, 1), sets5(IRREG, lp, 2)
     qs = ["Read the words in set %s out loud." % L for L in "ABC"]
     key = ["All 5 words read correctly: %s." % ", ".join(s) for s in (sa, sb, sc)]
-    return dict(qs=qs, key=key, dir="Look at the three sets of words. Read the words in each set out loud when your teacher asks.", dur=140, html=pills_html([("A", sa), ("B", sb), ("C", sc)]))
+    mk = [dict(l=L, w=list(x), allow=0) for L, x in zip("ABC", (sa, sb, sc))]
+    return dict(qs=qs, key=key, dir="Look at the three sets of words. Read the words in each set out loud when your teacher asks.", dur=140, html=pills_html([("A", sa), ("B", sb), ("C", sc)]), mk=mk, auto=True)
 
 
 def b_rf13_tword(lp, r):
     it = rot(TXT_WORD, lp)
     qs = ["Read sentence %s out loud." % L for L in "ABC"]
     key = ["Reads every word correctly: %s" % s for s in it]
-    return dict(qs=qs, key=key, dir="Look at the three sentences. Read each one out loud when your teacher asks.", dur=140, html=lines_html(list(zip("ABC", it))))
+    mk = [dict(l=L, t=x, allow=0) for L, x in zip("ABC", it)]
+    return dict(qs=qs, key=key, dir="Look at the three sentences. Read each one out loud when your teacher asks.", dur=140, html=lines_html(list(zip("ABC", it))), mk=mk, auto=True)
 
 
 # ================================================================ RF.1.4
@@ -454,7 +458,8 @@ def b_rf14_acc(lp, r):
         n = wc(p)
         key.append("%d words. Count the words read correctly. At least %d of %d (95 percent) is accurate. Note any word that was skipped, changed, or sounded out wrongly. If the student rereads to fix a word, that is self-correcting." % (n, int(round(n * 0.95 + 0.4)), n))
     html = lines_html(list(zip("ABC", ps)))
-    return dict(qs=qs, key=key, dir="Look at the three short passages. Read each one out loud when your teacher asks.", dur=200, html=html)
+    mk = [dict(l=L, t=p, timed=True, allow=wc(p) - int(round(wc(p) * 0.95 + 0.4))) for L, p in zip("ABC", ps)]
+    return dict(qs=qs, key=key, dir="Look at the three short passages. Read each one out loud when your teacher asks.", dur=200, html=html, mk=mk, auto=True)
 
 
 def b_rf14_flu(lp, r):
@@ -462,8 +467,9 @@ def b_rf14_flu(lp, r):
     qs = ["Read passage %s out loud. Make it sound like talking." % L for L in "ABC"]
     key = []
     for L, p in zip("ABC", ps):
-        key.append("%d words. Listen for: smooth reading (not word by word), a pause at each period, voice going up at a question mark, and strong voice at an exclamation mark. Optional: time it for words per minute." % wc(p))
-    return dict(qs=qs, key=key, dir="Look at the three short passages. Read each one out loud like you are talking, when your teacher asks.", dur=200, html=lines_html(list(zip("ABC", ps))))
+        key.append("%d words. Listen for: smooth reading (not word by word), a pause at each period, voice going up at a question mark, and strong voice at an exclamation mark. Use the timer under the passage to get words correct per minute." % wc(p))
+    mk = [dict(l=L, t=p, timed=True, allow=wc(p) - int(round(wc(p) * 0.95 + 0.4))) for L, p in zip("ABC", ps)]
+    return dict(qs=qs, key=key, dir="Look at the three short passages. Read each one out loud like you are talking, when your teacher asks.", dur=200, html=lines_html(list(zip("ABC", ps))), mk=mk, auto=False)
 
 
 # ================================================================ SL.1.4
@@ -669,7 +675,7 @@ CAT = {
         ("sent", "Produce and expand sentences", "Producing and expanding complete sentences")]},
 }
 
-APPLY = r"""Object.keys(G1ELA).forEach(function(std){A({std:std,op:"strands",make:function(lp){return G1ELA[std][String(lp)].map(function(s){var o={std:std,strand:s.id,title:s.title,n:3,dur:s.dur,dir:s.dir,desc:s.desc,rows:s.qs.map(function(q,j){return[q,s.key[j]]})};if(s.mats&&s.mats.length)o.mats=s.mats;if(s.html){(function(h){o.html=function(){return h}})(s.html)}return P(o)})}})});"""
+APPLY = r"""Object.keys(G1ELA).forEach(function(std){A({std:std,op:"strands",make:function(lp){return G1ELA[std][String(lp)].map(function(s){var o={std:std,strand:s.id,title:s.title,n:3,dur:s.dur,dir:s.dir,desc:s.desc,rows:s.qs.map(function(q,j){return[q,s.key[j]]})};if(s.mats&&s.mats.length)o.mats=s.mats;if(s.html){(function(h){o.html=function(){return h}})(s.html)}var p=P(o);if(s.mk){p.after=function(v,ctx){TPMARK(v,ctx,s.mk,s.auto)}}return p})}})});"""
 
 
 def build():
@@ -687,9 +693,15 @@ def build():
                     part["html"] = d["html"]
                 if d.get("mats"):
                     part["mats"] = d["mats"]
+                if d.get("mk"):
+                    part["mk"] = d["mk"]
+                    part["auto"] = bool(d.get("auto"))
                 parts.append(part)
             out.setdefault(std, {})[str(lp)] = parts
     return out
+
+
+TPMARK_JS = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tpmark.js"), encoding="utf8").read()
 
 
 def js(data):
@@ -697,6 +709,7 @@ def js(data):
          "window.TP_STRANDS=window.TP_STRANDS||{};"]
     for std, cat in CAT.items():
         L.append("window.TP_STRANDS[%s]=%s;" % (json.dumps(std), json.dumps({"desc": cat["desc"], "parts": [{"id": p[0], "label": p[1], "desc": p[2]} for p in cat["parts"]]}, ensure_ascii=False)))
+    L.append(TPMARK_JS)
     L.append("var G1ELA=%s;" % json.dumps(data, ensure_ascii=False))
     L.append(APPLY)
     L.append("/* G1ELA-STRANDS-END */")
