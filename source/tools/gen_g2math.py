@@ -89,6 +89,66 @@ CAT = {
         ("identify", "Identify triangles, quadrilaterals, pentagons, hexagons, and cubes", "I can identify triangles, quadrilaterals, pentagons, hexagons, and cubes"))},
 }
 
+# Skill phrases used in the picker and in the gradebook lines ("Secure with <phrase> (3 of 3 correct)").
+# They must read after "with", so no "I can".
+DESC = {
+    "add1to": "One-step addition word problems about adding to (within 100)",
+    "add1pt": "One-step addition word problems about putting together or taking apart (within 100)",
+    "add1cmp": "One-step addition compare word problems (within 100)",
+    "add2to": "Two-step addition word problems about adding to (within 100)",
+    "add2pt": "Two-step addition word problems about putting together or taking apart (within 100)",
+    "add2cmp": "Two-step addition compare word problems (within 100)",
+    "sub1from": "One-step subtraction word problems about taking from (within 100)",
+    "sub1pt": "One-step subtraction word problems about putting together or taking apart (within 100)",
+    "sub1cmp": "One-step subtraction compare word problems (within 100)",
+    "sub2from": "Two-step subtraction word problems about taking from (within 100)",
+    "sub2pt": "Two-step subtraction word problems about putting together or taking apart (within 100)",
+    "sub2cmp": "Two-step subtraction compare word problems (within 100)",
+    "oddeven": "Deciding if a group of up to 20 objects is odd or even, by pairing or counting by 2s",
+    "evaneq": "Writing an equation for an even number as a sum of two equal addends",
+    "arrays": "Adding to find the total in a rectangular array (up to 5 rows and 5 columns)",
+    "arrayeq": "Writing an equation for the total of an array as a sum of equal addends",
+    "count1000": "Counting within 1000",
+    "skip2": "Skip-counting by 2s", "skip5": "Skip-counting by 5s", "skip10": "Skip-counting by 10s", "skip100": "Skip-counting by 100s",
+    "readnum": "Reading numbers to 1000 in base-ten numerals",
+    "readname": "Reading numbers to 1000 as number names",
+    "readexp": "Reading numbers to 1000 in expanded form",
+    "writenum": "Writing numbers to 1000 in base-ten numerals",
+    "writename": "Writing numbers to 1000 as number names",
+    "writeexp": "Writing numbers to 1000 in expanded form",
+    "addm": "Adding within 1000 with models or drawings",
+    "adds": "Adding within 1000 with strategies",
+    "subm": "Subtracting within 1000 with models or drawings",
+    "subs": "Subtracting within 1000 with strategies",
+    "writtenadd": "Relating the addition strategy to a written method",
+    "writtensub": "Relating the subtraction strategy to a written method",
+    "hto": "Adding or subtracting hundreds with hundreds, tens with tens, and ones with ones",
+    "compose": "Composing or decomposing tens or hundreds when adding or subtracting within 1000",
+    "measure": "Measuring the length of an object",
+    "selecttool": "Selecting the appropriate tool to measure length",
+    "usetool": "Using rulers, yardsticks, meter sticks, and measuring tapes to measure length",
+    "tell_an": "Telling time to the nearest five minutes on analog clocks",
+    "tell_dg": "Telling time to the nearest five minutes on digital clocks",
+    "write_an": "Writing time to the nearest five minutes from analog clocks",
+    "write_dg": "Writing time to the nearest five minutes from digital clocks",
+    "tell_ampm": "Using a.m. and p.m. when telling time",
+    "write_ampm": "Using a.m. and p.m. when writing time",
+    "relations": "Knowing the relationships of time, such as minutes in an hour, days in a month, and weeks in a year",
+    "moneyprob": "Word problems with dollar bills, quarters, dimes, nickels, and pennies",
+    "symbols": "Using the $ and cent symbols appropriately",
+    "picgraph": "Drawing a picture graph (single-unit scale, up to four categories)",
+    "bargraph": "Drawing a bar graph (single-unit scale, up to four categories)",
+    "putogether": "Solving put-together problems with a bar graph",
+    "takeapart": "Solving take-apart problems with a bar graph",
+    "compare": "Solving compare problems with a bar graph",
+    "recognize": "Recognizing shapes with specified attributes",
+    "draw": "Drawing shapes with specified attributes",
+    "identify": "Identifying triangles, quadrilaterals, pentagons, hexagons, and cubes",
+}
+for _s, _c in CAT.items():
+    _c["parts"] = [(p[0], p[1], DESC[p[0]]) for p in _c["parts"]]
+    assert all(p[0] in DESC for p in _c["parts"])
+
 DIR_EQ = "Listen to each problem. Solve it on your paper. Write an equation with a box or a letter for the number you do not know."
 DIR_TALK = "Listen to each question. You can use your paper and pencil. Say your answer out loud."
 
