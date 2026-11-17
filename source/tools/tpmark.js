@@ -1,5 +1,5 @@
 /* TPMARK: teacher tool for read-aloud stops. Timer plus tap-to-mark missed words. Shared by the generated parts. */
-window.TPMARK=window.TPMARK||function(v,ctx,units,auto){
+window.TPMARK=window.TPMARK||function(v,ctx,units,auto,find){
  var st=ctx.stop,part=ctx.part,pi=st.parts.indexOf(part),n=ctx.note;
  if(!v||pi<0||!n||v.querySelector('[data-tpmark="'+pi+'"]'))return;
  n.mk=n.mk||{};var M=n.mk[pi]=n.mk[pi]||{};
@@ -13,8 +13,9 @@ window.TPMARK=window.TPMARK||function(v,ctx,units,auto){
   h+='<div style="margin:6px 0;line-height:2.3">'+words.map(function(w,i){return'<span class="mw" data-i="'+i+'" role="button" tabindex="0" style="display:inline-block;margin:2px 4px 2px 0;padding:0 8px;border:2px solid var(--line);border-radius:8px;font-size:1.3rem;cursor:pointer">'+w+'</span>'}).join("")+'</div><span class="small" data-r="sum"></span></div>';
  });
  box.innerHTML=h;
- var ol=v.querySelector('ol.qlist[data-part="'+pi+'"]');
- if(ol&&ol.parentNode)ol.parentNode.insertBefore(box,ol.nextSibling);else{var card=v.querySelector(".card")||v;card.appendChild(box)}
+ var ol=v.querySelector('ol.qlist[data-part="'+pi+'"]'),anc=null;
+ if(!ol&&find){var norm=function(e){var c=e.cloneNode(true);c.querySelectorAll("br").forEach(function(b){b.replaceWith(" ")});return c.textContent.replace(/\s+/g," ").trim()};v.querySelectorAll(".passage").forEach(function(e){if(e.closest("details,.tbar,.tb-pass")||e.getAttribute("data-tdup"))return;if(norm(e)===find)anc=e})}
+ if(ol&&ol.parentNode)ol.parentNode.insertBefore(box,ol.nextSibling);else if(anc&&anc.parentNode)anc.parentNode.insertBefore(box,anc.nextSibling);else{var card=v.querySelector(".card")||v;card.appendChild(box)}
  var ints={};
  function tag(line){n.gen=n.gen||{};var k="mk"+pi,old=n.gen[k]||"",t=n.text||"";if(old&&t.indexOf(old)>=0)t=t.replace(old,function(){return line});else if(line)t=(t.trim()?t.replace(/\s+$/,"")+"\n":"")+line;n.text=t.replace(/^\s+/,"").replace(/\n{3,}/g,"\n\n");n.gen[k]=line;var ft=document.getElementById("fText");if(ft)ft.value=n.text}
  function paint(quiet){
@@ -22,11 +23,11 @@ window.TPMARK=window.TPMARK||function(v,ctx,units,auto){
   units.forEach(function(u,ui){
    var words=u.w||String(u.t).split(/\s+/).filter(Boolean),r=M[ui]||{},miss=r.miss||[],row=box.querySelector('.tpm-u[data-u="'+ui+'"]');
    row.querySelectorAll(".mw").forEach(function(el){var on=miss.indexOf(+el.dataset.i)>=0;el.style.background=on?"#ffd1d1":"";el.style.textDecoration=on?"line-through":"";el.style.borderColor=on?"#c0392b":"";el.setAttribute("aria-pressed",on?"true":"false")});
-   var right=words.length-miss.length,pct=Math.round(right*100/words.length),ok=miss.length<=(u.allow||0);if(ok)good++;
+   var right=words.length-miss.length;if(auto==="words")good+=right;var pct=Math.round(right*100/words.length),ok=miss.length<=(u.allow||0);if(ok&&auto!=="words")good++;
    var nn=u.noun||"words",txt=right+" of "+words.length+" "+nn+" correct ("+pct+"%)";
    var wc=r.secs?Math.round(right*60/r.secs):null;
    if(r.secs)txt+=", "+r.secs+" sec, "+wc+" "+nn+" correct per minute";
-   if(u.allow!=null&&auto)txt+=ok?". Counts as correct.":". Does not count as correct.";
+   if(u.allow!=null&&auto===true)txt+=ok?". Counts as correct.":". Does not count as correct.";
    row.querySelector('[data-r="sum"]').textContent=txt;
    var sh=row.querySelector('[data-r="show"]');if(sh&&!ints[ui])sh.textContent=r.secs?r.secs+" sec":"0 sec";
    lines.push(u.l+": "+right+" of "+words.length+" "+nn+" correct"+(r.secs?", "+wc+" WCPM":"")+(miss.length?" (missed: "+miss.map(function(i){return words[i]}).join(", ")+")":""));

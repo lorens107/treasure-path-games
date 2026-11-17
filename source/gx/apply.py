@@ -780,7 +780,7 @@ s=s[:_m0]+_seg+s[_m1:]
 print("moved writing parts")
 print('base ten local drawers replaced',_cnt)
 assert _cnt==13,_cnt
-files=[B+'gx/core.js']+sorted(glob.glob(B+'gx/g[1-8].js'))+[B+'gx/gk.js',B+'gx/gtk.js']
+files=[B+'gx/core.js']+sorted(glob.glob(B+'gx/g[1-8].js'))+[B+'gx/gread.js',B+'gx/gk.js',B+'gx/gtk.js']
 js='\n'.join(open(f).read() for f in files)
 for _n in (1,2,3): js=js.replace('@@SD%d@@'%_n,open(B+'gem/sd%d.b64'%_n).read())
 for _n in (1,2): js=js.replace('@@WS%d@@'%_n,open(B+'gem/ws%d.b64'%_n).read())
