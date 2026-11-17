@@ -3,7 +3,7 @@ B=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+'/'
 s=open(B+'work/patched_base.html').read()
 old='(window.TP_PENDING=window.TP_PENDING||[]).push(m)}};'
 assert s.count(old)==1
-new='if(m&&/^[1-8]$/.test(String(m.grade))&&typeof m.build==="function"&&!m.gxd){m.gxd=1;var ob3=m.build;m.build=function(E){var r=ob3.call(this,E);try{if(window.GX&&r&&r.stops)r.stops=window.GX(E,m.lp,String(m.grade),r.stops);r.gxMoves=(window.GXMOVES||[]).filter(function(x){return x.g===String(m.grade)&&x.lp===m.lp});if(window.GXdirs)window.GXdirs(String(m.grade),r)}catch(e){console.error("GX",e)}return r}}'+old
+new='if(m&&/^(TK|K|[1-8])$/.test(String(m.grade))&&typeof m.build==="function"&&!m.gxd){m.gxd=1;var ob3=m.build;m.build=function(E){var r=ob3.call(this,E);try{if(window.GX&&r&&r.stops)r.stops=window.GX(E,m.lp,String(m.grade),r.stops);r.gxMoves=(window.GXMOVES||[]).filter(function(x){return x.g===String(m.grade)&&x.lp===m.lp});if(window.GXdirs)window.GXdirs(String(m.grade),r)}catch(e){console.error("GX",e)}return r}}'+old
 s=s.replace(old,new)
 DI='<img class="dir-img" alt="" aria-hidden="true" height="34" src="data:image/webp;base64,${PIC_IMG.tap}"> '
 assert s.count(DI)==1
@@ -780,7 +780,7 @@ s=s[:_m0]+_seg+s[_m1:]
 print("moved writing parts")
 print('base ten local drawers replaced',_cnt)
 assert _cnt==13,_cnt
-files=[B+'gx/core.js']+sorted(glob.glob(B+'gx/g[1-8].js'))
+files=[B+'gx/core.js']+sorted(glob.glob(B+'gx/g[1-8].js'))+[B+'gx/gk.js',B+'gx/gtk.js']
 js='\n'.join(open(f).read() for f in files)
 for _n in (1,2,3): js=js.replace('@@SD%d@@'%_n,open(B+'gem/sd%d.b64'%_n).read())
 for _n in (1,2): js=js.replace('@@WS%d@@'%_n,open(B+'gem/ws%d.b64'%_n).read())
