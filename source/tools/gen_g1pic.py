@@ -41,15 +41,18 @@ CAT = {
             ("organize", "Organize information into groups", "Organize information into groups (up to 3)"),
             ("represent", "Represent data in a chart or graph", "Represent data in a chart or graph"),
             ("interpret", "Interpret the data in a graph", "Interpret the data in a chart or graph"),
-            ("askanswer", "Ask and answer questions about data", "Ask and answer questions about the data: how many in all, how many in each group, which group has more or less"),
+            ("ask", "Ask questions about the data", "Ask questions about the data, such as how many in all, how many in each group, which group has more or less"),
+            ("answer", "Answer questions about the data", "Answer questions about the data, such as how many in all, how many in each group, which group has more or less"),
         ]},
     "1.G.A.3": {
         "desc": "partitioning circles and rectangles into two and four equal shares",
         "parts": [
             ("partcircle", "Partition circles into 2 and 4 equal shares", "Partition circles into two and four equal shares (student draws the lines)"),
             ("partrect", "Partition rectangles into 2 and 4 equal shares", "Partition rectangles into two and four equal shares (student draws the lines)"),
-            ("words", "Describe shares: halves, fourths, quarters", "Describe the shares using halves, fourths, and quarters, and the phrases half of, fourth of, quarter of"),
-            ("whole", "Describe the whole, and smaller shares", "Describe the whole as two of or four of the shares, and understand that more equal shares make smaller shares"),
+            ("words", "Describe shares with halves, fourths, quarters", "Describe the shares using the words halves, fourths, and quarters"),
+            ("phrases", "Use the phrases half of, fourth of, quarter of", "Use the phrases half of, fourth of, and quarter of when describing the shares"),
+            ("whole", "Describe the whole as two of or four of the shares", "Describe the whole as two of, or four of the shares"),
+            ("smaller", "More equal shares make smaller shares", "Show the knowledge that decomposing a shape into more equal shares creates smaller shares"),
         ]},
 }
 
@@ -294,20 +297,34 @@ def b_interpret(lp, r):
     return dict(qs=qs, key=key, dir="Look at the three graphs. Your teacher asks about one at a time. Tell what you see.", dur=150, html=row(figs))
 
 
-def b_askanswer(lp, r):
+def b_ask(lp, r):
     gs = graph_set(lp, r)
     col = THEME[lp][1]
     figs = [(L, bar_fig(t, c, n, col)) for L, (t, c, n) in zip(LET, gs)]
     (t1, c1, n1), (t2, c2, n2), (t3, c3, n3) = gs
-    a, b = (0, 1) if n2[0] != n2[1] else (0, 1)
-    hi, lo = (a, b) if n2[a] > n2[b] else (b, a)
+    qs = ["Look at graph A. Ask a question about how many there are in all.",
+          "Look at graph B. Ask a question that compares two groups, such as which group has more or fewer.",
+          "Look at graph C. Ask a question about how many are in one group."]
+    key = ["For example: How many are there in all? The answer is %d (%s)." % (sum(n1), " + ".join(str(x) for x in n1)),
+           "For example: Which has more, %s or %s? The answer is %s (%d and %d)." % (c2[0], c2[1], c2[0] if n2[0] > n2[1] else c2[1], n2[0], n2[1]),
+           "For example: How many %s are there? The answer is %d. Any question about one group that the graph can answer counts." % (c3[0], n3[0])]
+    return dict(qs=qs, key=key, dir="Look at the three graphs. Your teacher asks you to make up a question about each one. Say your question out loud.", dur=120, html=row(figs))
+
+
+def b_answer(lp, r):
+    gs = graph_set(lp, r)
+    col = THEME[lp][1]
+    figs = [(L, bar_fig(t, c, n, col)) for L, (t, c, n) in zip(LET, gs)]
+    (t1, c1, n1), (t2, c2, n2), (t3, c3, n3) = gs
+    hi, lo = (0, 1) if n3[0] > n3[1] else (1, 0)
     qs = ["Look at graph A. How many are there in all?",
-          "Look at graph B. How many more %s than %s?" % (c2[hi], c2[lo]),
-          "Look at graph C. Make up your own question about the graph. Then answer it."]
+          "Look at graph B. How many are in each group? Which group has fewer?",
+          "Look at graph C. How many more %s than %s?" % (c3[hi], c3[lo])]
+    fewer = c2[n2.index(min(n2))]
     key = ["%d in all (%s)." % (sum(n1), " + ".join(str(x) for x in n1)),
-           "%d more (%d - %d = %d)." % (n2[hi] - n2[lo], n2[hi], n2[lo], n2[hi] - n2[lo]),
-           "Counts: %s. Look for a question about the total, how many in a group, or which group has more or less, and an answer that matches the graph." % ", ".join("%s %d" % (c, n) for c, n in zip(c3, n3))]
-    return dict(qs=qs, key=key, dir="Look at the three graphs. Your teacher asks about one at a time. Answer the question out loud.", dur=150, html=row(figs))
+           "%s. %s has fewer." % (", ".join("%s %d" % (c, n) for c, n in zip(c2, n2)), fewer),
+           "%d more (%d - %d = %d)." % (n3[hi] - n3[lo], n3[hi], n3[lo], n3[hi] - n3[lo])]
+    return dict(qs=qs, key=key, dir="Look at the three graphs. Your teacher asks about one at a time. Answer out loud.", dur=130, html=row(figs))
 
 
 # ------------------------------------------------------------------ shares
@@ -365,42 +382,51 @@ def b_partrect(lp, r):
     return dict(qs=qs, key=key, dir="Listen to each question. Draw on your paper with a pencil. Then tell your teacher about your drawing.", dur=150, html=None)
 
 
+def shape_pair(lp):
+    return ("circle", "rectangle") if lp % 2 else ("rectangle", "circle")
+
+
 def b_words(lp, r):
-    shp = r.sample(["circle", "rectangle"], 2)
-    combos = [("circle", 2), ("rectangle", 4), ("circle", 4)] if lp % 2 else [("rectangle", 2), ("circle", 4), ("rectangle", 4)]
-    figs = []
-    qs, key = [], []
-    # A: unshaded, name the shares
-    sh, p = combos[0]
-    figs.append(("A", shape_svg(sh, p)))
-    qs.append("What are the shares in shape A called?")
-    key.append("Halves." if p == 2 else "Fourths (or quarters).")
-    # B: one share shaded, say the phrase
-    sh, p = combos[1]
-    figs.append(("B", shape_svg(sh, p, shade=0)))
-    qs.append("One share of shape B is shaded. Say it like this: the shaded part is one __ of the %s." % sh)
-    key.append("one half of the %s." % sh if p == 2 else "one fourth (or one quarter) of the %s." % sh)
-    sh, p = combos[2]
-    figs.append(("C", shape_svg(sh, p, shade=1)))
-    qs.append("Shape C has one share shaded. Tell what part of the %s is shaded, using half of, fourth of, or quarter of." % sh)
-    key.append("one half of the %s." % sh if p == 2 else "one fourth of the %s. Quarter of is also right." % sh)
-    return dict(qs=qs, key=key, dir="Look at the three shapes. Your teacher asks about one at a time. Use the words halves, fourths, quarters, half of, fourth of, quarter of.", dur=130, html=row(figs))
+    s1, s2 = shape_pair(lp)
+    figs = [("A", shape_svg(s1, 2)), ("B", shape_svg(s2, 4)), ("C", shape_svg(s1, 4))]
+    qs = ["What are the shares in shape A called?",
+          "What are the shares in shape B called?",
+          "Shape C has 4 equal shares. Tell me two words that name these shares."]
+    key = ["Halves.", "Fourths (or quarters).", "Fourths and quarters."]
+    return dict(qs=qs, key=key, dir="Look at the three shapes. Your teacher asks about one at a time. Use the words halves, fourths, and quarters.", dur=100, html=row(figs))
+
+
+def b_phrases(lp, r):
+    s1, s2 = shape_pair(lp)
+    figs = [("A", shape_svg(s1, 2, shade=0)), ("B", shape_svg(s2, 4, shade=1)), ("C", shape_svg(s1, 4, shade=2))]
+    qs = ["One share of shape A is shaded. What part of the %s is shaded? Use the words half of, fourth of, or quarter of." % s1,
+          "One share of shape B is shaded. What part of the %s is shaded? Use the words half of, fourth of, or quarter of." % s2,
+          "One share of shape C is shaded. What part of the %s is shaded? Say it a different way than you did for B." % s1]
+    key = ["Half of the %s." % s1, "A fourth of the %s, or a quarter of the %s." % (s2, s2),
+           "A quarter of the %s if the student said fourth for B, or a fourth of the %s if they said quarter." % (s1, s1)]
+    return dict(qs=qs, key=key, dir="Look at the three shapes. Your teacher asks about one at a time. Say what part is shaded, using half of, fourth of, or quarter of.", dur=110, html=row(figs))
 
 
 def b_whole(lp, r):
-    sh1, sh2 = (["circle", "rectangle"] if lp % 2 else ["rectangle", "circle"])
-    figA = shape_svg(sh1, 4)
-    figB = shape_svg(sh2, 2)
-    figC1 = shape_svg("rectangle", 2, wide=True)
-    figC2 = shape_svg("rectangle", 4, wide=True)
-    figs = [("A", figA), ("B", figB), ("C (left)", figC1), ("C (right)", figC2)]
-    qs = ["Shape A is cut into equal shares. The whole %s is made of how many shares? Say: the whole is __ of the shares." % sh1,
-          "Shape B is cut into equal shares. How many halves make the whole %s?" % sh2,
-          "Look at the two rectangles in C. One is cut into halves and one is cut into fourths. Which one has smaller shares? How do you know?"]
-    key = ["The whole is four of the shares (four fourths).",
-           "Two halves make the whole.",
-           "The one cut into fourths (the right one) has smaller shares. More equal shares make each share smaller."]
-    return dict(qs=qs, key=key, dir="Look at the shapes. Your teacher asks about one at a time. Tell how many shares make the whole.", dur=130, html=row(figs))
+    s1, s2 = shape_pair(lp)
+    figs = [("A", shape_svg(s1, 2)), ("B", shape_svg(s2, 4)), ("C", shape_svg(s1, 4))]
+    qs = ["Shape A is cut into halves. Say it like this: the whole %s is __ of the shares." % s1,
+          "Shape B is cut into fourths. Say it like this: the whole %s is __ of the shares." % s2,
+          "Shape C is cut into fourths. How many fourths make the whole %s?" % s1]
+    key = ["Two of the shares (two halves).", "Four of the shares (four fourths).", "Four fourths make the whole."]
+    return dict(qs=qs, key=key, dir="Look at the three shapes. Your teacher asks about one at a time. Tell how many shares make the whole.", dur=100, html=row(figs))
+
+
+def b_smaller(lp, r):
+    s1, s2 = shape_pair(lp)
+    figs = [("A (left)", shape_svg(s1, 2)), ("A (right)", shape_svg(s1, 4)), ("B (left)", shape_svg(s2, 2)), ("B (right)", shape_svg(s2, 4)), ("C", shape_svg(s1, 2))]
+    qs = ["Look at the two shapes in A. One is cut into halves and one is cut into fourths. Which one has smaller shares? How do you know?",
+          "Look at the two shapes in B. Which one has smaller shares? How do you know?",
+          "Shape C is cut into halves. If you cut each half into 2 equal shares, how many shares will there be? Will each share be bigger or smaller than a half?"]
+    key = ["The one cut into fourths (on the right). More equal shares make each share smaller.",
+           "The one cut into fourths (on the right). More equal shares make each share smaller.",
+           "4 shares. Each share will be smaller than a half (they will be fourths)."]
+    return dict(qs=qs, key=key, dir="Look at the shapes. Your teacher asks about one at a time. Tell which shares are smaller and how you know.", dur=130, html=row(figs))
 
 
 BUILD = {
@@ -410,9 +436,9 @@ BUILD = {
     ("1.MD.B.3", "wh_an"): b_time("an", False, "write"), ("1.MD.B.3", "wh_dg"): b_time("dg", False, "write"),
     ("1.MD.B.3", "wf_an"): b_time("an", True, "write"), ("1.MD.B.3", "wf_dg"): b_time("dg", True, "write"),
     ("1.MD.C.4", "organize"): b_organize, ("1.MD.C.4", "represent"): b_represent,
-    ("1.MD.C.4", "interpret"): b_interpret, ("1.MD.C.4", "askanswer"): b_askanswer,
+    ("1.MD.C.4", "interpret"): b_interpret, ("1.MD.C.4", "ask"): b_ask, ("1.MD.C.4", "answer"): b_answer,
     ("1.G.A.3", "partcircle"): b_partcircle, ("1.G.A.3", "partrect"): b_partrect,
-    ("1.G.A.3", "words"): b_words, ("1.G.A.3", "whole"): b_whole,
+    ("1.G.A.3", "words"): b_words, ("1.G.A.3", "phrases"): b_phrases, ("1.G.A.3", "whole"): b_whole, ("1.G.A.3", "smaller"): b_smaller,
 }
 
 

@@ -72,16 +72,22 @@ CAT = {
     "1.NBT.C.4": {
         "desc": "adding within 100, with a two-digit number and a one-digit number or a multiple of 10",
         "parts": [
-            ("add1", "Two-digit plus one-digit", "Add a two-digit number and a one-digit number within 100"),
-            ("add10", "Two-digit plus a multiple of 10", "Add a two-digit number and a multiple of 10 within 100"),
-            ("tensones", "Tens and ones, and making a ten", "Understand that you add tens and tens, ones and ones, and sometimes make a new ten"),
-            ("explain", "Written method and explaining", "Relate the adding strategy to a written method and explain the reasoning"),
+            ("add1m", "Two-digit plus one-digit, with models or drawings", "Add a two-digit number and a one-digit number within 100, using concrete models or drawings"),
+            ("add1s", "Two-digit plus one-digit, with strategies", "Add a two-digit number and a one-digit number within 100, using strategies based on place value, properties of operations, and/or the relationship between addition and subtraction"),
+            ("add10m", "Two-digit plus a multiple of 10, with models or drawings", "Add a two-digit number and a multiple of 10, using concrete models or drawings"),
+            ("add10s", "Two-digit plus a multiple of 10, with strategies", "Add a two-digit number and a multiple of 10, using strategies based on place value, properties of operations, and/or the relationship between addition and subtraction"),
+            ("written", "Relate the adding strategy to a written method", "Relate the addition strategy to a written method"),
+            ("explain", "Explain the reasoning used when adding", "Explain the reasoning used when adding"),
+            ("tensones", "Add tens and tens, ones and ones", "Show the knowledge that in adding two-digit numbers, one adds tens and tens, ones and ones"),
+            ("compose", "Compose a ten when adding", "Show the knowledge that sometimes it is necessary to compose a ten when adding two-digit numbers"),
         ]},
     "1.NBT.C.6": {
         "desc": "subtracting multiples of 10 from multiples of 10, in the range 10 to 90",
         "parts": [
-            ("sub10", "Subtract multiples of 10", "Subtract multiples of 10 from multiples of 10 (10 to 90), with a positive or zero difference"),
-            ("subexplain", "Written method and explaining", "Relate the subtracting strategy to a written method and explain the reasoning"),
+            ("sub10m", "Subtract multiples of 10, with models or drawings", "Subtract multiples of 10 in the range 10 to 90 from multiples of 10 in the range 10 to 90 (positive or zero differences), using concrete models or drawings"),
+            ("sub10s", "Subtract multiples of 10, with strategies", "Subtract multiples of 10 in the range 10 to 90 from multiples of 10 in the range 10 to 90 (positive or zero differences), using strategies based on place value, properties of operations, and/or the relationship between addition and subtraction"),
+            ("subwritten", "Relate the subtracting strategy to a written method", "Relate the subtraction strategy to a written method"),
+            ("subexplain", "Explain the reasoning used when subtracting", "Explain the reasoning used when subtracting"),
         ]},
 }
 
@@ -226,111 +232,168 @@ def b_showobj(lp, r):
                 html=("DOTS", ns), nums=[tuple(ns)])
 
 
-def b_add1(lp, r):
-    th = THEME[lp][0]
-    t1 = r.randint(2, 7); o1 = r.randint(1, 4); d1 = r.randint(1, 9 - o1)
-    n1 = t1 * 10 + o1
-    q1 = "%d + %d" % (n1, d1)
-    k1 = "%d (%d + %d = %d). No new ten is needed." % (n1 + d1, n1, d1, n1 + d1)
-    t2 = r.randint(2, 7); o2 = r.randint(5, 9); d2 = r.randint(10 - o2 + 1, 9)
-    n2 = t2 * 10 + o2
-    q2 = "%d + %d" % (n2, d2)
-    k2 = "%d (%d + %d = %d). The ones make a new ten." % (n2 + d2, n2, d2, n2 + d2)
-    t3 = r.randint(3, 8); o3 = r.randint(3, 9); d3 = r.randint(2, 9)
-    n3 = t3 * 10 + o3
-    nme = nm(lp, 4)
-    q3 = "%s has %d %s. %s gets %d more %s. How many %s does %s have now?" % (nme, n3, th[2], nme, d3, th[2], th[2], nme)
-    k3 = "%d (%d + %d = %d)." % (n3 + d3, n3, d3, n3 + d3)
-    return dict(qs=[q1, q2, q3], key=[k1, k2, k3], dir=DIR_TENS, dur=130, nums=[(n1, d1), (n2, d2), (n3, d3)])
+def pick_add(r, kind):
+    """kind: '1' no compose, '1c' compose, '10' multiple of ten. returns (n, d)"""
+    if kind == "1":
+        t = r.randint(2, 8); o = r.randint(1, 5); d = r.randint(2, 9 - o)
+    elif kind == "1c":
+        t = r.randint(2, 8); o = r.randint(5, 9); d = r.randint(10 - o, 9)
+        d = max(d, 10 - o)
+    else:
+        t = r.randint(1, 5); o = r.randint(1, 9); d = r.choice([10, 20, 30, 40])
+    n = t * 10 + o
+    assert n + d <= 99, (n, d)
+    return n, d
 
 
-def b_add10(lp, r):
-    th = THEME[lp][0]
-    n1 = r.randint(11, 59); m1 = r.choice([10, 20, 30, 40])
-    q1 = "%d + %d" % (n1, m1)
-    k1 = "%d (%d + %d = %d). The ones stay the same and the tens add." % (n1 + m1, n1, m1, n1 + m1)
-    n2 = r.randint(14, 48); m2 = r.choice([10, 20, 30, 50])
-    q2 = "%d + %d" % (n2, m2)
-    k2 = "%d (%d + %d = %d). The ones stay the same and the tens add." % (n2 + m2, n2, m2, n2 + m2)
-    n3 = r.randint(12, 55); m3 = r.choice([20, 30, 40])
-    nme = nm(lp, 5)
-    q3 = "%s has %d %s. Then %d more %s come. How many %s are there now?" % (nme, n3, th[1], m3, th[1], th[1])
-    k3 = "%d (%d + %d = %d)." % (n3 + m3, n3, m3, n3 + m3)
-    for n, m in ((n1, m1), (n2, m2), (n3, m3)):
-        assert n + m <= 100
-    return dict(qs=[q1, q2, q3], key=[k1, k2, k3], dir=DIR_TENS, dur=130, nums=[(n1, m1), (n2, m2), (n3, m3)])
+def adds(lp, r, kinds):
+    return [pick_add(r, k) for k in kinds]
 
 
-def b_tensones(lp, r):
-    n1 = r.randint(12, 58); m1 = r.choice([20, 30, 40])
-    q1 = "In %d + %d, do you add the %d to the tens or to the ones? How do you know?" % (n1, m1, m1)
-    k1 = "To the tens. %d is %d tens, so %d tens + %d tens = %d tens. The ones stay %d. Answer %d." % (m1, m1 // 10, n1 // 10, m1 // 10, n1 // 10 + m1 // 10, n1 % 10, n1 + m1)
-    o2 = r.randint(6, 9); d2 = r.randint(10 - o2 + 2, 9); t2 = r.randint(2, 7)
-    n2 = t2 * 10 + o2
-    s2 = o2 + d2
-    q2 = "In %d + %d, add the ones first. What is %d + %d? What do you do with that number?" % (n2, d2, o2, d2)
-    k2 = "%d. Make a new ten: %d is 1 ten and %d ones. Then %d tens + 1 ten = %d tens, and %d ones. Answer %d." % (s2, s2, s2 - 10, t2, t2 + 1, s2 - 10, n2 + d2)
-    o3 = r.randint(5, 9); d3 = r.randint(10 - o3 + 1, 9); t3 = r.randint(3, 8)
-    n3 = t3 * 10 + o3
-    q3 = "In %d + %d, how many tens and how many ones are in the answer? How do you know?" % (n3, d3)
-    k3 = "%d, so %d tens and %d ones. The ones add to %d, which makes a new ten (%d tens + 1 ten = %d tens, and %d ones)." % (n3 + d3, (n3 + d3) // 10, (n3 + d3) % 10, o3 + d3, t3, t3 + 1, (n3 + d3) % 10)
-    for v in (n1 + m1, n2 + d2, n3 + d3):
-        assert v <= 100
-    return dict(qs=[q1, q2, q3], key=[k1, k2, k3], dir=DIR_TENS, dur=140, nums=[(n1, m1), (n2, d2), (n3, d3)])
+def b_add1m(lp, r):
+    ps = adds(lp, r, ["1", "1c", "1"])
+    qs = ["Draw tens and ones to show %d + %d. How many in all?" % p for p in ps]
+    key = ["%d (%d + %d = %d). Look for %d tens and %d ones in the drawing, plus %d more ones%s." % (n + d, n, d, n + d, n // 10, n % 10, d, (", grouped into a new ten" if n % 10 + d >= 10 else "")) for n, d in ps]
+    return dict(qs=qs, key=key, dir="Listen to each question. Draw tens and ones on your paper. Say your answer out loud.", dur=140)
+
+
+def b_add1s(lp, r):
+    ps = adds(lp, r, ["1", "1c", "1c"])
+    qs = ["Solve %d + %d. Use a strategy and tell me what you did." % p for p in ps]
+    key = []
+    for n, d in ps:
+        if n % 10 + d >= 10:
+            key.append("%d (%d + %d = %d). Any strategy that works counts, such as making a ten with the ones, or counting on." % (n + d, n, d, n + d))
+        else:
+            key.append("%d (%d + %d = %d). Any strategy that works counts, such as adding the ones %d + %d = %d and keeping the %d tens, or counting on." % (n + d, n, d, n + d, n % 10, d, n % 10 + d, n // 10))
+    return dict(qs=qs, key=key, dir="Listen to each question. Solve it any way you like. Then tell your teacher what you did.", dur=130)
+
+
+def b_add10m(lp, r):
+    ps = adds(lp, r, ["10", "10", "10"])
+    qs = ["Draw tens and ones to show %d + %d. How many in all?" % p for p in ps]
+    key = ["%d (%d + %d = %d). Look for %d tens and %d ones, plus %d more tens, so %d tens and %d ones." % (n + d, n, d, n + d, n // 10, n % 10, d // 10, (n + d) // 10, n % 10) for n, d in ps]
+    return dict(qs=qs, key=key, dir="Listen to each question. Draw tens and ones on your paper. Say your answer out loud.", dur=140)
+
+
+def b_add10s(lp, r):
+    ps = adds(lp, r, ["10", "10", "10"])
+    qs = ["Solve %d + %d. Use a strategy and tell me what you did." % p for p in ps]
+    key = ["%d (%d + %d = %d). Any strategy that works counts, such as %d tens + %d tens = %d tens with the %d ones staying the same, or counting on by tens." % (n + d, n, d, n + d, n // 10, d // 10, (n + d) // 10, n % 10) for n, d in ps]
+    return dict(qs=qs, key=key, dir="Listen to each question. Solve it any way you like. Then tell your teacher what you did.", dur=130)
+
+
+def b_written(lp, r):
+    ps = adds(lp, r, ["1c", "10", "1"])
+    r.shuffle(ps)
+    qs = ["Solve %d + %d. Write an equation or a written method on your paper that shows how you added." % p for p in ps]
+    key = []
+    for n, d in ps:
+        if d % 10 == 0:
+            ex = "%d + %d = %d, since %d tens + %d tens = %d tens" % (n, d, n + d, n // 10, d // 10, (n + d) // 10)
+        elif n % 10 + d >= 10:
+            up = 10 - n % 10
+            ex = "%d + %d = %d, then %d + %d = %d" % (n, up, n + up, n + up, d - up, n + d)
+        else:
+            ex = "%d + %d = %d, then %d + %d = %d" % (n // 10 * 10, d, n // 10 * 10 + d, n // 10 * 10 + d, n % 10, n + d)
+        key.append("%d. Look for a written equation or method that matches how the student added, such as %s." % (n + d, ex))
+    return dict(qs=qs, key=key, dir="Listen to each question. Solve it, then write the equation or method on your paper.", dur=150)
 
 
 def b_explain(lp, r):
-    qs, key, nums = [], [], []
-    specs = [("ones", r.randint(2, 7), r.randint(1, 3), r.randint(2, 5)),
-             ("regroup", r.randint(2, 7), r.randint(5, 9), r.randint(5, 9)),
-             ("tens", r.randint(2, 6), r.randint(2, 8), 0)]
-    r.shuffle(specs)
-    for kind, t, o, d in specs:
-        n = t * 10 + o
-        if kind == "tens":
-            d = r.choice([10, 20, 30])
-        if kind == "regroup" and o + d < 10:
-            d = 10 - o + r.randint(1, 3)
-            d = min(d, 9)
-        s = n + d
-        assert s <= 100
-        qs.append("Add %d + %d. Draw tens and ones, write the number sentence, and tell how you added." % (n, d))
-        look = "an equation written correctly and an explanation that uses tens and ones"
-        if kind == "regroup":
+    ps = adds(lp, r, ["10", "1c", "1"])
+    r.shuffle(ps)
+    qs = ["Solve %d + %d. Tell me how you know your answer is right." % p for p in ps]
+    key = []
+    for n, d in ps:
+        look = "an explanation that uses tens and ones"
+        if n % 10 + d >= 10 and d < 10:
             look += " (for example, the ones made a new ten)"
-        key.append("%d (%d + %d = %d). Look for %s." % (s, n, d, s, look))
-        nums.append((n, d))
-    return dict(qs=qs, key=key, dir=DIR_EXPL, dur=210, nums=nums)
+        key.append("%d (%d + %d = %d). Look for %s." % (n + d, n, d, n + d, look))
+    return dict(qs=qs, key=key, dir="Listen to each question. Solve it, then explain to your teacher how you know it is right.", dur=140)
 
 
-def b_sub10(lp, r):
-    th = THEME[lp][0]
-    a1 = r.choice([50, 60, 70, 80, 90]); b1 = r.choice([x for x in (10, 20, 30) if x < a1])
-    q1 = "%d - %d" % (a1, b1)
-    k1 = "%d (%d - %d = %d). %d tens take away %d tens is %d tens." % (a1 - b1, a1, b1, a1 - b1, a1 // 10, b1 // 10, (a1 - b1) // 10)
-    a2 = r.choice([60, 70, 80, 90]); b2 = r.choice([x for x in (30, 40, 50, 60) if x < a2])
-    q2 = "%d - %d" % (a2, b2)
-    k2 = "%d (%d - %d = %d). %d tens take away %d tens is %d tens." % (a2 - b2, a2, b2, a2 - b2, a2 // 10, b2 // 10, (a2 - b2) // 10)
-    nme = nm(lp, 6)
-    if lp in (3, 6, 9):   # zero difference
-        a3 = r.choice([30, 40, 50, 60, 70]); b3 = a3
-        q3 = "%s has %d %s. All of the %s are given away. How many %s are left?" % (nme, a3, th[0], th[0], th[0])
-        k3 = "0 (%d - %d = 0). All the tens are taken away, so none are left." % (a3, b3)
-    else:
-        a3 = r.choice([50, 60, 70, 80, 90]); b3 = r.choice([x for x in (20, 30, 40) if x < a3])
-        q3 = "%s has %d %s. %d %s are given away. How many %s are left?" % (nme, a3, th[0], b3, th[0], th[0])
-        k3 = "%d (%d - %d = %d)." % (a3 - b3, a3, b3, a3 - b3)
-    return dict(qs=[q1, q2, q3], key=[k1, k2, k3], dir=DIR_TENS, dur=100, nums=[(a1, b1), (a2, b2), (a3, b3)])
+def b_tensones(lp, r):
+    n1, d1 = pick_add(r, "10")
+    n2, d2 = pick_add(r, "1")
+    n3, d3 = pick_add(r, "10")
+    q1 = "In %d + %d, what do you add to the %d tens? What happens to the ones?" % (n1, d1, n1 // 10)
+    k1 = "Add %d tens to %d tens to get %d tens. The %d ones stay the same. Answer %d." % (d1 // 10, n1 // 10, (n1 + d1) // 10, n1 % 10, n1 + d1)
+    q2 = "In %d + %d, does the %d get added to the tens or to the ones? How do you know?" % (n2, d2, d2)
+    k2 = "To the ones: %d ones + %d ones = %d ones. The %d tens stay the same. Answer %d." % (n2 % 10, d2, n2 % 10 + d2, n2 // 10, n2 + d2)
+    q3 = "Show %d + %d as tens and ones. How many tens and how many ones are in the answer?" % (n3, d3)
+    k3 = "%d, which is %d tens and %d ones. The tens are added to the tens and the ones stay the same." % (n3 + d3, (n3 + d3) // 10, (n3 + d3) % 10)
+    return dict(qs=[q1, q2, q3], key=[k1, k2, k3], dir="Listen to each question. You can draw tens and ones on your paper. Say your answer out loud.", dur=140)
+
+
+def b_compose(lp, r):
+    kinds = ["1c", "1", "1c"]
+    r.shuffle(kinds)
+    ps = adds(lp, r, kinds)
+    qs, key = [], []
+    for (n, d), k in zip(ps, kinds):
+        if k == "1c":
+            qs.append("Do you need to make a new ten when you add %d + %d? How do you know?" % (n, d))
+            s = n % 10 + d
+            key.append("Yes. %d ones + %d ones = %d ones, which is 1 ten and %d ones. Then %d tens + 1 ten = %d tens. Answer %d." % (n % 10, d, s, s - 10, n // 10, n // 10 + 1, n + d))
+        else:
+            qs.append("Do you need to make a new ten when you add %d + %d? How do you know?" % (n, d))
+            key.append("No. %d ones + %d ones = %d ones, which is less than 10. Answer %d." % (n % 10, d, n % 10 + d, n + d))
+    return dict(qs=qs, key=key, dir="Listen to each question. You can draw tens and ones on your paper. Say your answer out loud.", dur=140)
+
+
+def pick_sub(r, zero):
+    if zero:
+        a = r.choice([30, 40, 50, 60, 70, 80, 90]); return a, a
+    a = r.choice([50, 60, 70, 80, 90]); b = r.choice([x for x in (10, 20, 30, 40, 50) if x < a])
+    return a, b
+
+
+def subs(lp, r, zero_on):
+    ps = [pick_sub(r, False), pick_sub(r, False), pick_sub(r, False)]
+    if zero_on:
+        ps[2] = pick_sub(r, True)
+    return ps
+
+
+def b_sub10m(lp, r):
+    ps = subs(lp, r, lp % 3 == 0)
+    qs = ["Draw tens to show %d - %d. How many are left?" % p for p in ps]
+    key = []
+    for a, b in ps:
+        if a == b:
+            key.append("0 (%d - %d = 0). Look for %d tens drawn and all %d crossed out, so none are left." % (a, b, a // 10, b // 10))
+        else:
+            key.append("%d (%d - %d = %d). Look for %d tens drawn with %d crossed out, so %d tens are left." % (a - b, a, b, a - b, a // 10, b // 10, (a - b) // 10))
+    return dict(qs=qs, key=key, dir="Listen to each question. Draw tens on your paper. Say your answer out loud.", dur=110)
+
+
+def b_sub10s(lp, r):
+    ps = subs(lp, r, lp % 3 == 1)
+    qs = ["Solve %d - %d. Use a strategy and tell me what you did." % p for p in ps]
+    key = []
+    for a, b in ps:
+        if a == b:
+            key.append("0 (%d - %d = 0). Any strategy that works counts, such as all the tens are taken away so none are left." % (a, b))
+        else:
+            key.append("%d (%d - %d = %d). Any strategy that works counts, such as %d tens take away %d tens is %d tens, counting back by tens, or thinking %d + %d = %d." % (a - b, a, b, a - b, a // 10, b // 10, (a - b) // 10, b, a - b, a))
+    return dict(qs=qs, key=key, dir="Listen to each question. Solve it any way you like. Then tell your teacher what you did.", dur=110)
+
+
+def b_subwritten(lp, r):
+    ps = subs(lp, r, lp % 3 == 2)
+    qs = ["Solve %d - %d. Write an equation on your paper that shows how you solved it." % p for p in ps]
+    key = []
+    for a, b in ps:
+        key.append("%d (%d - %d = %d). Look for an equation or written method that matches how the student solved it, such as %d tens - %d tens = %d tens%s." % (a - b, a, b, a - b, a // 10, b // 10, (a - b) // 10, (" or %d + %d = %d" % (b, a - b, a)) if a != b else ""))
+    return dict(qs=qs, key=key, dir="Listen to each question. Solve it, then write the equation on your paper.", dur=110)
 
 
 def b_subexplain(lp, r):
-    qs, key, nums = [], [], []
-    for i in range(3):
-        a = r.choice([50, 60, 70, 80, 90]); b = r.choice([x for x in (10, 20, 30, 40, 50) if x < a])
-        qs.append("Subtract %d - %d. Write the number sentence and tell how you know." % (a, b))
-        key.append("%d (%d - %d = %d). Look for a number sentence written correctly and an explanation such as: %d tens take away %d tens is %d tens, counting back by tens, or %d + %d = %d." % (a - b, a, b, a - b, a // 10, b // 10, (a - b) // 10, b, a - b, a))
-        nums.append((a, b))
-    return dict(qs=qs, key=key, dir="Listen to each question. Write the number sentence on your paper. Then tell your teacher how you know.", dur=130, nums=nums)
+    ps = subs(lp, r, False)
+    qs = ["Solve %d - %d. Tell me how you know your answer is right." % p for p in ps]
+    key = ["%d (%d - %d = %d). Look for reasoning such as %d tens take away %d tens is %d tens, or %d + %d = %d." % (a - b, a, b, a - b, a // 10, b // 10, (a - b) // 10, b, a - b, a) for a, b in ps]
+    return dict(qs=qs, key=key, dir="Listen to each question. Solve it, then explain to your teacher how you know it is right.", dur=110)
 
 
 BUILD = {
@@ -338,9 +401,12 @@ BUILD = {
     ("1.OA.C.5", "counton"): b_counton, ("1.OA.C.5", "countback"): b_countback,
     ("1.NBT.A.1", "countfrom"): b_countfrom, ("1.NBT.A.1", "readnum"): b_readnum,
     ("1.NBT.A.1", "writenum"): b_writenum, ("1.NBT.A.1", "showobj"): b_showobj,
-    ("1.NBT.C.4", "add1"): b_add1, ("1.NBT.C.4", "add10"): b_add10,
-    ("1.NBT.C.4", "tensones"): b_tensones, ("1.NBT.C.4", "explain"): b_explain,
-    ("1.NBT.C.6", "sub10"): b_sub10, ("1.NBT.C.6", "subexplain"): b_subexplain,
+    ("1.NBT.C.4", "add1m"): b_add1m, ("1.NBT.C.4", "add1s"): b_add1s,
+    ("1.NBT.C.4", "add10m"): b_add10m, ("1.NBT.C.4", "add10s"): b_add10s,
+    ("1.NBT.C.4", "written"): b_written, ("1.NBT.C.4", "explain"): b_explain,
+    ("1.NBT.C.4", "tensones"): b_tensones, ("1.NBT.C.4", "compose"): b_compose,
+    ("1.NBT.C.6", "sub10m"): b_sub10m, ("1.NBT.C.6", "sub10s"): b_sub10s,
+    ("1.NBT.C.6", "subwritten"): b_subwritten, ("1.NBT.C.6", "subexplain"): b_subexplain,
 }
 
 BAD = re.compile(r"hold it up|show (me|your teacher) your (paper|work)|camera|—|–")
@@ -354,6 +420,8 @@ def build():
             for pid, label, desc in cat["parts"]:
                 d = BUILD[(std, pid)](lp, rng_for(lp, std + pid))
                 assert len(d["qs"]) == 3 and len(d["key"]) == 3, (std, pid, lp)
+                fix = lambda t: re.sub(r"\b1 tens\b", "1 ten", re.sub(r"\b1 ones\b", "1 one", t))
+                d["qs"] = [fix(t) for t in d["qs"]]; d["key"] = [fix(t) for t in d["key"]]
                 for t in d["qs"] + d["key"] + [d["dir"]]:
                     assert not BAD.search(t), (std, pid, lp, t)
                 part = {"id": pid, "title": label, "desc": desc, "qs": d["qs"], "key": d["key"], "dir": d["dir"], "dur": d["dur"]}
