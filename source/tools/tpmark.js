@@ -5,7 +5,7 @@ window.TPMARK=window.TPMARK||function(v,ctx,units,auto){
  n.mk=n.mk||{};var M=n.mk[pi]=n.mk[pi]||{};
  var box=document.createElement("div");box.className="no-key tpmark";box.setAttribute("data-tpmark",pi);
  box.style.cssText="margin:14px 0;padding:10px 12px;border:2px dashed var(--line);border-radius:12px";
- var h='<p class="small" style="margin:0 0 6px"><b>Teacher:</b> tap a word the student missed (skipped, changed, or sounded out wrong). Tap again to undo.'+(units.some(function(u){return u.timed})?" Use Start when the student reads the first word and Stop at the last word.":"")+'</p>';
+ var h='<p class="small" style="margin:0 0 6px"><b>Teacher:</b> tap each '+(units[0].noun==="sounds"?"sound":"word")+' the student missed (skipped, changed, or said wrong). Tap again to undo.'+(units.some(function(u){return u.timed})?" Use Start when the student reads the first word and Stop at the last word.":"")+'</p>';
  units.forEach(function(u,ui){
   var words=u.w||String(u.t).split(/\s+/).filter(Boolean);
   h+='<div class="tpm-u" data-u="'+ui+'" style="margin:8px 0;padding-top:6px;border-top:1px solid var(--line)"><b>'+u.l+'.</b> ';
@@ -23,13 +23,13 @@ window.TPMARK=window.TPMARK||function(v,ctx,units,auto){
    var words=u.w||String(u.t).split(/\s+/).filter(Boolean),r=M[ui]||{},miss=r.miss||[],row=box.querySelector('.tpm-u[data-u="'+ui+'"]');
    row.querySelectorAll(".mw").forEach(function(el){var on=miss.indexOf(+el.dataset.i)>=0;el.style.background=on?"#ffd1d1":"";el.style.textDecoration=on?"line-through":"";el.style.borderColor=on?"#c0392b":"";el.setAttribute("aria-pressed",on?"true":"false")});
    var right=words.length-miss.length,pct=Math.round(right*100/words.length),ok=miss.length<=(u.allow||0);if(ok)good++;
-   var txt=right+" of "+words.length+" words correct ("+pct+"%)";
+   var nn=u.noun||"words",txt=right+" of "+words.length+" "+nn+" correct ("+pct+"%)";
    var wc=r.secs?Math.round(right*60/r.secs):null;
-   if(r.secs)txt+=", "+r.secs+" sec, "+wc+" words correct per minute";
+   if(r.secs)txt+=", "+r.secs+" sec, "+wc+" "+nn+" correct per minute";
    if(u.allow!=null&&auto)txt+=ok?". Counts as correct.":". Does not count as correct.";
    row.querySelector('[data-r="sum"]').textContent=txt;
    var sh=row.querySelector('[data-r="show"]');if(sh&&!ints[ui])sh.textContent=r.secs?r.secs+" sec":"0 sec";
-   lines.push(u.l+": "+right+" of "+words.length+" words correct"+(r.secs?", "+wc+" WCPM":"")+(miss.length?" (missed: "+miss.map(function(i){return words[i]}).join(", ")+")":""));
+   lines.push(u.l+": "+right+" of "+words.length+" "+nn+" correct"+(r.secs?", "+wc+" WCPM":"")+(miss.length?" (missed: "+miss.map(function(i){return words[i]}).join(", ")+")":""));
   });
   if(quiet)return;
   tag(lines.join(". ")+".");
@@ -48,4 +48,15 @@ window.TPMARK=window.TPMARK||function(v,ctx,units,auto){
  });
  box.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("mw")){e.preventDefault();e.target.click()}});
  paint(!Object.keys(M).length);
+};
+
+/* TPELK: sound boxes (Elkonin boxes). The student taps a box for each sound; tap again to clear. */
+window.TPELK=window.TPELK||function(v){
+ if(!v)return;
+ v.querySelectorAll(".elk-box").forEach(function(b){
+  if(b._elk)return;b._elk=1;
+  var f=function(){var on=b.textContent==="";b.textContent=on?"\u25CF":"";b.style.background=on?"#bfe3ff":""};
+  b.addEventListener("click",f);
+  b.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();f()}});
+ });
 };

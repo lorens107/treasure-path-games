@@ -339,11 +339,26 @@ FINAL = [("dog", "/g/"), ("sun", "/n/"), ("bus", "/s/"), ("map", "/p/"), ("nest"
 SEG = [("fish", "/f/ /i/ /sh/"), ("stop", "/s/ /t/ /o/ /p/"), ("jam", "/j/ /a/ /m/"), ("ship", "/sh/ /i/ /p/"), ("chin", "/ch/ /i/ /n/"), ("frog", "/f/ /r/ /o/ /g/"), ("nest", "/n/ /e/ /s/ /t/")]
 
 
+PHON = {"ship": ["sh", "i", "p"], "frog": ["f", "r", "o", "g"], "moon": ["m", "oo", "n"], "stop": ["s", "t", "o", "p"], "chin": ["ch", "i", "n"], "drum": ["d", "r", "u", "m"],
+        "cat": ["k", "a", "t"], "sit": ["s", "i", "t"], "hop": ["h", "o", "p"], "bug": ["b", "u", "g"], "pen": ["p", "e", "n"], "dog": ["d", "o", "g"], "sun": ["s", "u", "n"],
+        "bus": ["b", "u", "s"], "map": ["m", "a", "p"], "nest": ["n", "e", "s", "t"], "fish": ["f", "i", "sh"], "jam": ["j", "a", "m"]}
+
+
+def elk_html(items):
+    out = ""
+    for num, w, ph in items:
+        out += '<div class="elk" style="margin:10px 0;display:flex;align-items:center;gap:6px;flex-wrap:wrap"><b style="font-size:1.4rem;margin-right:6px">%d.</b>' % num
+        for _ in ph:
+            out += '<span class="elk-box" role="button" tabindex="0" aria-label="sound box" style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border:3px solid var(--ink);border-radius:8px;font-size:2.2rem;cursor:pointer"></span>'
+        out += '<span class="no-key small" style="margin-left:10px">%s: %s</span></div>' % (w, " ".join("/%s/" % x for x in ph))
+    return out
+
+
 def b_rf12_sounds(lp, r):
     kinds = ["initial", "medial", "final", "segment"]
     ks = [kinds[(lp - 1 + j) % 4] for j in range(3)]
-    qs, key = [], []
-    for k in ks:
+    qs, key, items, mk = [], [], [], []
+    for n, k in enumerate(ks, 1):
         if k == "initial":
             w, a = INIT[(lp - 1) % len(INIT)]
             qs.append("What is the first sound in the word %s?" % w)
@@ -360,7 +375,13 @@ def b_rf12_sounds(lp, r):
             w, a = SEG[(lp - 1) % len(SEG)]
             qs.append("Say each sound in the word %s, one at a time." % w)
             key.append("%s. Every sound is said in order." % a)
-    return dict(qs=qs, key=key, dir="Your teacher says words. Listen for the sounds and tell your answer out loud. You do not need to read.", dur=150)
+            mk.append(dict(l=w, w=["/%s/" % x for x in PHON[w]], allow=0, noun="sounds"))
+        items.append((n, w, PHON[w]))
+    d = dict(qs=qs, key=key, dir="Your teacher says words. Use the sound boxes: one box for each sound. Tap a box as you say the sound. You do not need to read.", dur=150, html=elk_html(items), elk=True)
+    if mk:
+        d["mk"] = mk
+        d["auto"] = False
+    return d
 
 
 # ================================================================ RF.1.3
@@ -675,7 +696,7 @@ CAT = {
         ("sent", "Produce and expand sentences", "Producing and expanding complete sentences")]},
 }
 
-APPLY = r"""Object.keys(G1ELA).forEach(function(std){A({std:std,op:"strands",make:function(lp){return G1ELA[std][String(lp)].map(function(s){var o={std:std,strand:s.id,title:s.title,n:3,dur:s.dur,dir:s.dir,desc:s.desc,rows:s.qs.map(function(q,j){return[q,s.key[j]]})};if(s.mats&&s.mats.length)o.mats=s.mats;if(s.html){(function(h){o.html=function(){return h}})(s.html)}var p=P(o);if(s.mk){p.after=function(v,ctx){TPMARK(v,ctx,s.mk,s.auto)}}return p})}})});"""
+APPLY = r"""Object.keys(G1ELA).forEach(function(std){A({std:std,op:"strands",make:function(lp){return G1ELA[std][String(lp)].map(function(s){var o={std:std,strand:s.id,title:s.title,n:3,dur:s.dur,dir:s.dir,desc:s.desc,rows:s.qs.map(function(q,j){return[q,s.key[j]]})};if(s.mats&&s.mats.length)o.mats=s.mats;if(s.html){(function(h){o.html=function(){return h}})(s.html)}var p=P(o);if(s.mk||s.elk){p.after=function(v,ctx){if(s.elk)TPELK(v,ctx);if(s.mk)TPMARK(v,ctx,s.mk,s.auto)}}return p})}})});"""
 
 
 def build():
@@ -693,6 +714,8 @@ def build():
                     part["html"] = d["html"]
                 if d.get("mats"):
                     part["mats"] = d["mats"]
+                if d.get("elk"):
+                    part["elk"] = True
                 if d.get("mk"):
                     part["mk"] = d["mk"]
                     part["auto"] = bool(d.get("auto"))
