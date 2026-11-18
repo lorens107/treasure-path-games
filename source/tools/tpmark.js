@@ -51,9 +51,17 @@ window.TPMARK=window.TPMARK||function(v,ctx,units,auto,find){
  paint(!Object.keys(M).length);
 };
 
-/* TPELK: sound boxes (Elkonin boxes). The student taps a box for each sound; tap again to clear. */
+/* TPELK: sound boxes (Elkonin boxes), an optional support. Hidden until the teacher turns them on. Tap a box per sound; tap again to clear. */
 window.TPELK=window.TPELK||function(v){
  if(!v)return;
+ var rows=v.querySelectorAll(".elk");
+ if(rows.length&&!v.querySelector(".elk-tog")){
+  var bar=document.createElement("div");bar.className="elk-tog no-print";bar.style.cssText="margin:8px 0";
+  var btn=document.createElement("button");btn.type="button";btn.className="btn ghost";btn.setAttribute("aria-pressed","false");
+  var show=function(on){rows.forEach(function(r){r.style.display=on?"flex":"none"});btn.textContent=on?"Hide sound boxes":"Show sound boxes (optional support)";btn.setAttribute("aria-pressed",on?"true":"false")};
+  btn.addEventListener("click",function(){show(btn.getAttribute("aria-pressed")!=="true")});
+  bar.appendChild(btn);rows[0].parentNode.insertBefore(bar,rows[0]);show(false);
+ }
  v.querySelectorAll(".elk-box").forEach(function(b){
   if(b._elk)return;b._elk=1;
   var f=function(){var on=b.textContent==="";b.textContent=on?"\u25CF":"";b.style.background=on?"#bfe3ff":""};
@@ -61,3 +69,8 @@ window.TPELK=window.TPELK||function(v){
   b.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();f()}});
  });
 };
+/* TPQS: for parts the teacher reads, student-facing text (passages, choice cards) is bigger than the small teacher question list. */
+if(!document.getElementById("tp-qs-css")){var st=document.createElement("style");st.id="tp-qs-css";
+ st.textContent=".tqm .qlist{font-size:1.2rem;line-height:1.35;color:var(--muted,#555)}.tqm .qlist li{margin-bottom:8px}.tqm .passage{font-size:2.7rem;line-height:1.7;max-width:none}.tqm .stu-card{font-size:2.6rem;line-height:1.6;font-weight:700;margin:10px 0;padding:6px 14px;border-left:6px solid var(--sea,#4a7ab5)}.tqm .stu-card .n{display:inline-block;min-width:1.4em;color:var(--sea,#4a7ab5)}.tqm .ex-card{border:3px dashed var(--sea,#4a7ab5);border-radius:14px;padding:10px 16px;margin:10px 0;background:var(--sea-soft,#eef5ff)}.tqm .ex-card .ex-h{font-size:1rem;font-weight:700;margin:0 0 4px}.tqm .ex-card .ex-say{font-size:1.1rem;margin:4px 0}@media print{.elk-tog{display:none}}";
+ document.head.appendChild(st)}
+window.TPQS=window.TPQS||function(v){if(v&&v.classList)v.classList.add("tqm")};

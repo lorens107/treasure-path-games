@@ -377,7 +377,7 @@ def b_rf12_sounds(lp, r):
             key.append("%s. Every sound is said in order." % a)
             mk.append(dict(l=w, w=["/%s/" % x for x in PHON[w]], allow=0, noun="sounds"))
         items.append((n, w, PHON[w]))
-    d = dict(qs=qs, key=key, dir="Your teacher says words. Use the sound boxes: one box for each sound. Tap a box as you say the sound. You do not need to read.", dur=150, html=elk_html(items), elk=True)
+    d = dict(qs=qs, key=key, dir="Your teacher says words. Say each sound. Sound boxes can help: one box for each sound. You do not need to read.", dur=150, html=elk_html(items), elk=True)
     if mk:
         d["mk"] = mk
         d["auto"] = False
@@ -558,10 +558,34 @@ def pairs(lst, lp):
     return rot(lst, lp)
 
 
-def mk_l(pool, dur=140):
+LDIR = "Your teacher shows you an example first. Then look at the words on the screen while your teacher reads each question. Tell your answer out loud."
+
+L_EX = {
+    "nouns": ("Which word names a place: school or jump?", "School.", "A noun names a person, place, or thing. School is a place, so school is the noun."),
+    "plural": ("Which sounds right: The cat runs or the cat run?", "The cat runs.", "There is one cat, so the action word gets an s: the cat runs."),
+    "pron": ("Sam is my friend. ___ is funny. Which word fits: He or Him?", "He.", "He takes the place of Sam at the start of the sentence."),
+    "tense": ("Today I kick. Yesterday I ___.", "Kicked.", "Yesterday already happened, so the word ends in ed: kicked."),
+    "adj": ("In the little pink pig, which words tell what the pig is like?", "Little and pink.", "Words that tell what something is like are adjectives. Little and pink both describe the pig."),
+    "conj": ("I like milk ___ juice. Which word fits: and or but?", "And.", "I like both, so the joining word is and."),
+    "det": ("I see ___ egg. Which word fits: a or an?", "An.", "Egg starts with a vowel sound, so we say an egg."),
+    "prep": ("The hat is ___ the box. Which word fits: in or but?", "In.", "In tells where the hat is, so in fits."),
+    "sent": ("Make this sentence longer: The cat sat.", "The fluffy cat sat on the mat.", "I add words that tell more, like what kind of cat and where it sat."),
+}
+
+
+def l_html(pid, qs):
+    ex = L_EX[pid]
+    h = '<div class="ex-card"><p class="ex-h">Example first (not scored). Show this to the student and think out loud.</p><div class="stu-card" style="border:0;margin:2px 0"><span class="n">&#9733;</span>%s</div><p class="ex-say">Teacher says: %s</p><p class="ex-say"><b>%s</b> %s</p></div>' % (ex[0], ex[0], ex[1], ex[2])
+    for i, q in enumerate(qs, 1):
+        h += '<div class="stu-card"><span class="n">%d.</span>%s</div>' % (i, q)
+    return h
+
+
+def mk_l(pool, pid, dur=140):
     def b(lp, r):
         it = rot(pool, lp)
-        return dict(qs=[q for q, _ in it], key=[a for _, a in it], dir=LEFT, dur=dur)
+        qs = [q for q, _ in it]
+        return dict(qs=qs, key=[a for _, a in it], dir=LDIR, dur=dur, html=l_html(pid, qs))
     return b
 
 
@@ -613,7 +637,8 @@ def b_l_print(lp, r):
     key = ["Look for: every letter is a capital, made the right way, starting at the top, and sitting on the line. Note any reversals.",
            "Look for: every letter is lowercase, made the right way, with tall and short letters sized correctly. Note any reversals.",
            "Look for: a capital at the start of each name, lowercase after, letters formed correctly, spaced evenly."]
-    return dict(qs=qs, key=key, dir="Your teacher reads each question. Print the letters on your paper.", dur=240, mats=["a pencil and paper"])
+    ex = '<div class="ex-card"><p class="ex-h">Example first (not scored)</p><p class="ex-say">Teacher prints the letter A on a paper while saying: start at the top, go down, and sit on the line. Then the student prints.</p></div>'
+    return dict(qs=qs, key=key, dir="Your teacher shows you how to print a letter first. Then your teacher reads each question. Print the letters on your paper.", dur=240, mats=["a pencil and paper"], html=ex)
 
 
 BUILD = {
@@ -628,8 +653,8 @@ BUILD = {
     ("RF.1.4", "acc"): b_rf14_acc, ("RF.1.4", "flu"): b_rf14_flu,
     ("SL.1.2", "ask"): sl2_ask(LIT, "story"), ("SL.1.2", "answer"): sl2_answer(INFO, "text"),
     ("SL.1.4", "people"): b_sl4_people, ("SL.1.4", "places"): b_sl4_places, ("SL.1.4", "things"): b_sl4_things, ("SL.1.4", "events"): b_sl4_events, ("SL.1.4", "ideas"): b_sl4_ideas, ("SL.1.4", "feel"): b_sl4_feel,
-    ("L.1.1", "print"): b_l_print, ("L.1.1", "nouns"): mk_l(NOUNS), ("L.1.1", "plural"): mk_l(PLUR), ("L.1.1", "pron"): mk_l(PRON), ("L.1.1", "tense"): mk_l(TENSE), ("L.1.1", "adj"): mk_l(ADJ),
-    ("L.1.1", "conj"): mk_l(CONJ), ("L.1.1", "det"): mk_l(DET), ("L.1.1", "prep"): mk_l(PREP), ("L.1.1", "sent"): mk_l(SENT),
+    ("L.1.1", "print"): b_l_print, ("L.1.1", "nouns"): mk_l(NOUNS, "nouns"), ("L.1.1", "plural"): mk_l(PLUR, "plural"), ("L.1.1", "pron"): mk_l(PRON, "pron"), ("L.1.1", "tense"): mk_l(TENSE, "tense"), ("L.1.1", "adj"): mk_l(ADJ, "adj"),
+    ("L.1.1", "conj"): mk_l(CONJ, "conj"), ("L.1.1", "det"): mk_l(DET, "det"), ("L.1.1", "prep"): mk_l(PREP, "prep"), ("L.1.1", "sent"): mk_l(SENT, "sent"),
 }
 
 CAT = {
@@ -696,7 +721,7 @@ CAT = {
         ("sent", "Produce and expand sentences", "Producing and expanding complete sentences")]},
 }
 
-APPLY = r"""Object.keys(G1ELA).forEach(function(std){A({std:std,op:"strands",make:function(lp){return G1ELA[std][String(lp)].map(function(s){var o={std:std,strand:s.id,title:s.title,n:3,dur:s.dur,dir:s.dir,desc:s.desc,rows:s.qs.map(function(q,j){return[q,s.key[j]]})};if(s.mats&&s.mats.length)o.mats=s.mats;if(s.html){(function(h){o.html=function(){return h}})(s.html)}var p=P(o);if(s.mk||s.elk){p.after=function(v,ctx){if(s.elk)TPELK(v,ctx);if(s.mk)TPMARK(v,ctx,s.mk,s.auto)}}return p})}})});"""
+APPLY = r"""Object.keys(G1ELA).forEach(function(std){A({std:std,op:"strands",make:function(lp){return G1ELA[std][String(lp)].map(function(s){var o={std:std,strand:s.id,title:s.title,n:3,dur:s.dur,dir:s.dir,desc:s.desc,rows:s.qs.map(function(q,j){return[q,s.key[j]]})};if(s.mats&&s.mats.length)o.mats=s.mats;if(s.html){(function(h){o.html=function(){return h}})(s.html)}var p=P(o);p.after=function(v,ctx){TPQS(v);if(s.elk)TPELK(v,ctx);if(s.mk)TPMARK(v,ctx,s.mk,s.auto)};return p})}})});"""
 
 
 def build():
