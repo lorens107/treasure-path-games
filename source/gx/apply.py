@@ -926,5 +926,6 @@ must('const line=rr.note&&rr.note.trim()||`${verdict} the optional ${l.title} ch
 must('line:rr.note&&rr.note.trim()||autoLine(ev[c])||""}','line:rr.note&&rr.note.trim()||(autoLine(ev[c])?withCT(autoLine(ev[c])):"")}')
 must('function openTeacher(){if(!S.started){toast("Start a game first. Teacher view shows the key for the game you picked.");return}','function tvNoGame(on){document.querySelectorAll("#tvTabs [data-tab]").forEach(b=>{b.style.display=on&&b.dataset.tab!=="students"?"none":""})}function openTeacher(){if(!S.started){tvNoGame(true);tvTab="students";current=null;show("teacherView");renderTeacher();return}tvNoGame(false);')
 must('$("tvBack").onclick=()=>{drawMap();','$("tvBack").onclick=()=>{if(!S.started){tvNoGame(false);show("setupView");return}drawMap();')
+must("if(p.after)try{p.after(v,partCtx(st,p,pi,v))}catch(e){console.error(e)}});if(st.lv&&st.after)","if(window.TPLEX)try{TPLEX(p,v,pi,st)}catch(e){console.error(e)}if(p.after)try{p.after(v,partCtx(st,p,pi,v))}catch(e){console.error(e)}});if(st.lv&&st.after)")
 open(B+'work/patched.html','w').write(s)
 print('patched',len(s),'gx bytes',len(js))
